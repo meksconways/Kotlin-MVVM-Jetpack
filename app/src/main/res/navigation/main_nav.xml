@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav"
+
+          >
+
+
+    <fragment android:id="@+id/listNewsFragment"
+              android:name="com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment"
+              android:label="list_news_fragment" tools:layout="@layout/list_news_fragment"/>
+    <fragment android:id="@+id/galleryFragment2"
+              android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
+              android:label="gallery_fragment" tools:layout="@layout/gallery_fragment"/>
+    <fragment android:id="@+id/columnistsFragment2"
+              android:name="com.mek.haberlerkotlin.tabfragment.columnistfragment.ColumnistsFragment"
+              android:label="columnists_fragment" tools:layout="@layout/columnists_fragment"/>
+    <fragment android:id="@+id/writerFragment2"
+              android:name="com.mek.haberlerkotlin.tabfragment.writersfragment.WriterFragment"
+              android:label="writer_fragment" tools:layout="@layout/writer_fragment"/>
+    <fragment android:id="@+id/readLaterFragment2"
+              android:name="com.mek.haberlerkotlin.tabfragment.readlaterfragment.ReadLaterFragment"
+              android:label="read_later_fragment" tools:layout="@layout/read_later_fragment"/>
+</navigation>

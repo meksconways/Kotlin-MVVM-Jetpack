@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@color/primaryColor"
+            app:titleTextColor="@color/white"
+            android:id="@+id/toolbar"
+            app:title="@string/app_name"
+    >
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:visibility="visible"
+                 app:layout_constraintTop_toBottomOf="@id/toolbar"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+                 android:id="@+id/container_news">
+
+
+        <fragment
+
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:defaultNavHost="true"
+                android:id="@+id/newsTab"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+
+        />
+
+
+    </FrameLayout>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:visibility="gone"
+
+                 app:layout_constraintTop_toBottomOf="@id/toolbar"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+                 android:id="@+id/container_gallery">
+
+
+        <fragment
+
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:defaultNavHost="true"
+                android:id="@+id/galleryTab"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+
+        />
+
+
+    </FrameLayout>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:visibility="gone"
+
+                 app:layout_constraintTop_toBottomOf="@id/toolbar"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+                 android:id="@+id/container_columnist">
+
+
+        <fragment
+
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:defaultNavHost="true"
+                android:id="@+id/columnistTab"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+
+        />
+
+
+    </FrameLayout>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:visibility="gone"
+                 app:layout_constraintTop_toBottomOf="@id/toolbar"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+                 android:id="@+id/container_writer">
+
+
+        <fragment
+
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:defaultNavHost="true"
+                android:id="@+id/writerTab"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+
+        />
+
+
+    </FrameLayout>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:visibility="gone"
+
+                 app:layout_constraintTop_toBottomOf="@id/toolbar"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+                 android:id="@+id/container_readlater">
+
+
+        <fragment
+
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                app:defaultNavHost="true"
+                android:id="@+id/readlaterTab"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+
+        />
+
+
+    </FrameLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu_bottom_bar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:itemHorizontalTranslationEnabled="false"
+            app:labelVisibilityMode="labeled"
+            android:background="#ffffff"
+            android:id="@+id/bottom_nav"
+    >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

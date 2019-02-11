@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_newsfeed"
+            app:startDestination="@id/listNewsFragment2">
+
+    <fragment android:id="@+id/listNewsFragment2"
+              android:name="com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment"
+              android:label="list_news_fragment" tools:layout="@layout/list_news_fragment">
+        <action android:id="@+id/action_listNewsFragment2_to_galleryFragment3" app:destination="@id/galleryFragment3"/>
+    </fragment>
+    <fragment android:id="@+id/galleryFragment3"
+              android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
+              android:label="gallery_fragment" tools:layout="@layout/gallery_fragment"/>
+</navigation>
