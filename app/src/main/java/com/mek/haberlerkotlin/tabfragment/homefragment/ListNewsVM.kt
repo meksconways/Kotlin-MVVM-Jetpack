@@ -1,7 +1,10 @@
 package com.mek.haberlerkotlin.tabfragment.homefragment
 
-import androidx.lifecycle.ViewModel;
+import com.mek.haberlerkotlin.viewmodel.BaseViewModel
 
-class ListNewsVM : ViewModel() {
-    // TODO: Implement the ViewModel
+class ListNewsVM : BaseViewModel() {
+
+
+
+
 }
