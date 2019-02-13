@@ -1,14 +1,15 @@
 package com.mek.haberlerkotlin.networking
 
-import io.reactivex.Observable
+import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
+import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Header
 
 interface ApiService {
 
 
-
-    @GET("/posts")
-    fun getPosts(): Observable<List<Post>>
+    @GET("articles?\$select=Title,Files,Id&\$expand=Files")
+    fun getAllNews(@Header("apikey") apikey: String): Single<List<ListNewsModel>>
 
 
 }

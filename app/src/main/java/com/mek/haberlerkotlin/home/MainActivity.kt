@@ -11,7 +11,6 @@ import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.base.MyApplication
 import com.mek.haberlerkotlin.navigation.TabManager
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener,
     BottomNavigationView.OnNavigationItemReselectedListener {
@@ -26,9 +25,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         tabManager.switchTab(item.itemId)
         return true
     }
-
-
-
 
     private lateinit var viewmodel:MainActivityVM
 
