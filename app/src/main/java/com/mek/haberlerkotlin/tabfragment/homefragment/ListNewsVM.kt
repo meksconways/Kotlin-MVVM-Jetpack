@@ -20,7 +20,7 @@ class ListNewsVM : BaseViewModel() {
 
     private lateinit var subscription: Disposable
 
-    @Inject private lateinit var apiService: ApiService
+    @Inject lateinit var apiService: ApiService
 
     private val data = MutableLiveData<List<ListNewsModel>>()
     private val loading = MutableLiveData<Boolean>()
@@ -38,14 +38,12 @@ class ListNewsVM : BaseViewModel() {
     private fun fetchData(){
         subscription = apiService
             .getAllNews(API_KEY)
+           // .map { data.value }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {  }
-            .doOnEvent { t1, t2 ->   }
-            .subscribe(
-                { result -> onRetrievePostListSuccess(result) },
-                { onRetrievePostListError() }
-            )
+            .doOnSubscribe { loading.value = true }
+            .doOnEvent { _, _ -> loading.value = false }
+            .subscribe { result -> data.value = result }
 
     }
 

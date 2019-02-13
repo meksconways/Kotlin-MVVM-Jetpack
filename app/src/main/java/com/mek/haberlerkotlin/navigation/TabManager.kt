@@ -3,14 +3,12 @@ package com.mek.haberlerkotlin.navigation
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.home.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.math.log
 
 class TabManager(private val mainActivity: MainActivity) {
 
