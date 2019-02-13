@@ -4,17 +4,17 @@ import com.squareup.moshi.Json
 
 data class ListNewsModel(
 
-    @Json(name = "Id")
+    @field:Json(name = "Id")
     val id: String,
-    @Json(name = "Title")
+    @field:Json(name = "Title")
     val title: String,
-    @Json(name = "Files")
+    @field:Json(name = "Files")
     val files: List<Files>
 )
 
 data class Files(
 
-    @Json(name = "FileUrl")
+    @field:Json(name = "FileUrl")
     val fileUrl: String
 
 )

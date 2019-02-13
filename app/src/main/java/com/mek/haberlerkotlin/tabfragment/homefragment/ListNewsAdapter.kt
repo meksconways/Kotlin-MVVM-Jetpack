@@ -56,8 +56,13 @@ class ListNewsAdapter(
 
         fun bind(listNewsModel: ListNewsModel) {
 
+            try {
+                android.util.Log.d("***",listNewsModel.title)
+            }catch (e:Exception){
+                e.printStackTrace()
+                println(e.localizedMessage)
+            }
             title.text = listNewsModel.title
-
             if (listNewsModel.files.isNotEmpty()){
                 Glide.with(title.context)
                     .load(listNewsModel.files[0].fileUrl)
