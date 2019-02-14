@@ -4,13 +4,13 @@ import android.content.Context
 import com.mek.haberlerkotlin.home.MainActivity
 import com.mek.haberlerkotlin.networking.NetworkModule
 import com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment
-import com.mek.haberlerkotlin.viewmodel.BaseViewModel
+import com.mek.haberlerkotlin.viewmodel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component (modules = [NetworkModule::class])
+@Component(modules = [NetworkModule::class, ViewModelModule::class])
 interface AppComponent {
 
     fun inject(application: MyApplication)
@@ -21,7 +21,7 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun bindAppContext(application: Context) : Builder
+        fun bindAppContext(application: Context): Builder
 
         fun build(): AppComponent
 

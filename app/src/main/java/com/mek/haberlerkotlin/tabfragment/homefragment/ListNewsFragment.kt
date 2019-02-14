@@ -1,26 +1,30 @@
 package com.mek.haberlerkotlin.tabfragment.homefragment
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.base.MyApplication
+import com.mek.haberlerkotlin.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.list_news_fragment.*
+import javax.inject.Inject
 
 
 class ListNewsFragment : Fragment() {
 
+    @Inject
+    lateinit var factory: ViewModelFactory
+
     companion object {
         fun newInstance(i: Int) = ListNewsFragment()
     }
+
     private lateinit var viewModel: ListNewsVM
 
     override fun onCreateView(
@@ -32,7 +36,6 @@ class ListNewsFragment : Fragment() {
     }
 
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         MyApplication.getAppComponent(context).inject(this)
@@ -40,9 +43,9 @@ class ListNewsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ListNewsVM::class.java)
+        viewModel = ViewModelProviders.of(this, factory).get(ListNewsVM::class.java)
         rv_listNews.layoutManager = LinearLayoutManager(context)
-        rv_listNews.adapter = ListNewsAdapter(this,viewModel)
+        rv_listNews.adapter = ListNewsAdapter(this, viewModel)
         observeViewModel()
 
 //        btn_goToChild.setOnClickListener{
@@ -58,7 +61,7 @@ class ListNewsFragment : Fragment() {
                 if (loading) {
                     progressBar.visibility = View.VISIBLE
                     rv_listNews.visibility = View.GONE
-                }else{
+                } else {
                     progressBar.visibility = View.GONE
                     rv_listNews.visibility = View.VISIBLE
                 }
