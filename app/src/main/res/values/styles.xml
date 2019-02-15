@@ -17,5 +17,9 @@
 
     </style>
 
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+    <item name="fontFamily">@font/dosis_semibold</item>
+    </style>
+
 
 </resources>

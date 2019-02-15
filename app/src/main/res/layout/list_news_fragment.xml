@@ -7,13 +7,44 @@
         tools:context=".tabfragment.homefragment.ListNewsFragment">
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/rv_listNews"
+            android:nestedScrollingEnabled="true"
+            android:fitsSystemWindows="true"
+            android:fillViewport="true"
     >
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+        >
+
+            <include
+                    layout="@layout/layout_topic"
+                    android:id="@+id/lyt_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+            <include
+                    layout="@layout/layout_topic"
+                    android:id="@+id/lyt_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+            <include
+                    layout="@layout/layout_topic"
+                    android:id="@+id/lyt_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
     <ProgressBar android:layout_width="wrap_content"
                  android:layout_height="wrap_content"

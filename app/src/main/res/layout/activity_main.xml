@@ -147,6 +147,7 @@
             app:itemHorizontalTranslationEnabled="false"
             app:labelVisibilityMode="labeled"
             android:background="#ffffff"
+            android:theme="@style/Widget.BottomNavigationView"
             android:id="@+id/bottom_nav"
     >
 

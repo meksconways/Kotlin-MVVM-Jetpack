@@ -26,7 +26,7 @@ class ListNewsAdapter(
 
         viewModel.getData().observe(owner, Observer { data ->
             dataList.clear()
-            if (data != null){
+            if (data != null) {
                 dataList.addAll(data)
             }
             notifyDataSetChanged()
@@ -36,13 +36,15 @@ class ListNewsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsAdapter {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_newslist,parent,false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_topics, parent, false)
         return NewsAdapter(view)
     }
 
     override fun getItemCount(): Int {
         return dataList.size
     }
+
+
 
     override fun onBindViewHolder(holder: NewsAdapter, position: Int) {
         holder.bind(dataList[position])
@@ -51,19 +53,15 @@ class ListNewsAdapter(
 
     class NewsAdapter(containerView: View) : RecyclerView.ViewHolder(containerView) {
 
-        private val title = containerView.findViewById(R.id.txt_itemTitle) as TextView
-        private val img = containerView.findViewById(R.id.img_itemPhoto) as ImageView
+        private val title = containerView.findViewById(R.id.txt_topicTitle) as TextView
+        private val img = containerView.findViewById(R.id.img_topicImage) as ImageView
 
         fun bind(listNewsModel: ListNewsModel) {
 
-            try {
-                android.util.Log.d("***",listNewsModel.title)
-            }catch (e:Exception){
-                e.printStackTrace()
-                println(e.localizedMessage)
-            }
+            println(listNewsModel.title)
+
             title.text = listNewsModel.title
-            if (listNewsModel.files.isNotEmpty()){
+            if (listNewsModel.files.isNotEmpty()) {
                 Glide.with(title.context)
                     .load(listNewsModel.files[0].fileUrl)
                     .apply(RequestOptions().override(800, 450))
