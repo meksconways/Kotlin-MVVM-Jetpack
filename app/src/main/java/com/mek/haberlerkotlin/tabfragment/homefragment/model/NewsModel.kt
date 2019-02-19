@@ -9,7 +9,11 @@ data class ListNewsModel(
     @field:Json(name = "Title")
     val title: String,
     @field:Json(name = "Files")
-    val files: List<Files>
+    val files: List<Files>,
+    @field:Json(name = "Path")
+    val path: String,
+    @field:Json(name = "CreatedDate")
+    val date: String
 )
 
 data class Files(

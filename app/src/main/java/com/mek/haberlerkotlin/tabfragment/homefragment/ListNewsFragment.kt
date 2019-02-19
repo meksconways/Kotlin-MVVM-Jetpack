@@ -8,17 +8,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.base.MyApplication
+import com.mek.haberlerkotlin.utils.DUNYA_PATH
+import com.mek.haberlerkotlin.utils.EKONOMI_PATH
+import com.mek.haberlerkotlin.utils.GUNDEM_PATH
 import com.mek.haberlerkotlin.viewmodel.ViewModelFactory
+import kotlinx.android.synthetic.main.layout_subnews.view.*
 import kotlinx.android.synthetic.main.layout_topic.*
 import kotlinx.android.synthetic.main.layout_topic.view.*
 import kotlinx.android.synthetic.main.list_news_fragment.*
-import kotlinx.android.synthetic.main.list_news_fragment.view.*
-
 import javax.inject.Inject
 
 
@@ -26,8 +29,6 @@ class ListNewsFragment : Fragment() {
 
     @Inject
     lateinit var factory: ViewModelFactory
-
-
 
 
     private lateinit var viewModel: ListNewsVM
@@ -49,13 +50,48 @@ class ListNewsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(ListNewsVM::class.java)
-        lyt_0.rv_topics.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        lyt_0.rv_topics.adapter = ListNewsAdapter(this,viewModel)
+        lyt_0.rv_topics.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        lyt_0.rv_topics.adapter = ListNewsAdapter(this, viewModel)
         val snapHelper: SnapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(lyt_0.rv_topics)
         indicator.attachToRecyclerView(lyt_0.rv_topics)
-//        rv_listNews.layoutManager = LinearLayoutManager(context)
-//        rv_listNews.adapter = ListNewsAdapter(this, viewModel)
+
+        lyt_spor.rv_subNews.layoutManager = GridLayoutManager(
+            context, 2,
+            GridLayoutManager.HORIZONTAL, false
+        )
+        lyt_spor.rv_subNews.adapter = SubNewsAdapter(this, viewModel)
+        val snapHelperSports: SnapHelper = LinearSnapHelper()
+        snapHelperSports.attachToRecyclerView(lyt_spor.rv_subNews)
+
+        lyt_dunya.txt_title.text = "Dünya Haberleri"
+        lyt_dunya.rv_subNews.layoutManager = GridLayoutManager(
+            context, 2,
+            GridLayoutManager.HORIZONTAL, false
+        )
+        lyt_dunya.rv_subNews.adapter = SubNewsAdapter(this, viewModel, DUNYA_PATH)
+        val snapHelperCountry: SnapHelper = LinearSnapHelper()
+        snapHelperCountry.attachToRecyclerView(lyt_dunya.rv_subNews)
+
+        lyt_economy.txt_title.text = "Ekonomi Haberleri"
+        lyt_economy.rv_subNews.layoutManager = GridLayoutManager(
+            context, 2,
+            GridLayoutManager.HORIZONTAL, false
+        )
+        lyt_economy.rv_subNews.adapter = SubNewsAdapter(this, viewModel, EKONOMI_PATH)
+        val snapHelperEconomy: SnapHelper = LinearSnapHelper()
+        snapHelperEconomy.attachToRecyclerView(lyt_economy.rv_subNews)
+
+        lyt_journal.txt_title.text = "Gündem Haberleri"
+        lyt_journal.rv_subNews.layoutManager = GridLayoutManager(
+            context, 2,
+            GridLayoutManager.HORIZONTAL, false
+        )
+        lyt_journal.rv_subNews.adapter = SubNewsAdapter(this, viewModel, GUNDEM_PATH)
+        val snapHelperJournal: SnapHelper = LinearSnapHelper()
+        snapHelperJournal.attachToRecyclerView(lyt_journal.rv_subNews)
+
+
         observeViewModel()
 
 //        btn_goToChild.setOnClickListener{
@@ -69,12 +105,22 @@ class ListNewsFragment : Fragment() {
         viewModel.getLoading().observe(this, Observer { loading ->
             run {
                 if (loading) {
-                    progressBar.visibility = View.VISIBLE
+                    //progressBar.visibility = View.VISIBLE
                     //rv_listNews.visibility = View.GONE
                 } else {
-                    progressBar.visibility = View.GONE
+                    //progressBar.visibility = View.GONE
                     //rv_listNews.visibility = View.VISIBLE
                 }
+            }
+        })
+        viewModel.getExecutionCount().observe(this, Observer { count ->
+
+            if (count > 4) {
+                progressBar.visibility = View.GONE
+                scrollView.visibility = View.VISIBLE
+            } else {
+                scrollView.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
             }
         })
 

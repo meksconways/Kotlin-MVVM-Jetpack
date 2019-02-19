@@ -58,8 +58,6 @@ class ListNewsAdapter(
 
         fun bind(listNewsModel: ListNewsModel) {
 
-            println(listNewsModel.title)
-
             title.text = listNewsModel.title
             if (listNewsModel.files.isNotEmpty()) {
                 Glide.with(title.context)

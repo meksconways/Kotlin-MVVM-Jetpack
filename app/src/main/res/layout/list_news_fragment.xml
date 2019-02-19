@@ -13,6 +13,7 @@
             android:nestedScrollingEnabled="true"
             android:fitsSystemWindows="true"
             android:fillViewport="true"
+            android:id="@+id/scrollView"
     >
 
         <LinearLayout
@@ -28,17 +29,30 @@
                     android:layout_height="wrap_content"
             />
             <include
-                    layout="@layout/layout_topic"
-                    android:id="@+id/lyt_1"
+                    layout="@layout/layout_subnews"
+                    android:id="@+id/lyt_spor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                />
+            <include
+                    layout="@layout/layout_subnews"
+                    android:id="@+id/lyt_dunya"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
             />
             <include
-                    layout="@layout/layout_topic"
-                    android:id="@+id/lyt_2"
+                    layout="@layout/layout_subnews"
+                    android:id="@+id/lyt_journal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
             />
+            <include
+                    layout="@layout/layout_subnews"
+                    android:id="@+id/lyt_economy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+
 
         </LinearLayout>
 

@@ -146,7 +146,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:itemHorizontalTranslationEnabled="false"
             app:labelVisibilityMode="labeled"
-            android:background="#ffffff"
+            app:itemTextColor="@color/bottom_selector"
+            app:itemIconTint="@color/bottom_selector"
             android:theme="@style/Widget.BottomNavigationView"
             android:id="@+id/bottom_nav"
     >

@@ -19,6 +19,7 @@
 
     <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
     <item name="fontFamily">@font/dosis_semibold</item>
+        <item name="android:background">@drawable/bottom_corner</item>
     </style>
 
 

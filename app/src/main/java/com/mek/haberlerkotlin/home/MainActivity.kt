@@ -30,9 +30,10 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        MyApplication.getAppComponent(this).inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        MyApplication.getAppComponent(this).inject(this)
         bottom_nav.setOnNavigationItemSelectedListener(this)
         bottom_nav.setOnNavigationItemReselectedListener(this)
         setSupportActionBar(toolbar)
