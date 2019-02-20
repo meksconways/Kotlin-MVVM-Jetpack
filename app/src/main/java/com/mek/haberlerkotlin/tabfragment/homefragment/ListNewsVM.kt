@@ -43,6 +43,9 @@ class ListNewsVM @Inject constructor(
 
     init {
 
+        /**
+         * Tam burda NDK kullanılacak
+         */
         fetchTopic()
         fetchSports()
         fetchCountry()

@@ -1,6 +1,8 @@
 package com.mek.haberlerkotlin.utils
 
 
+
+
 /** The base URL of the API */
 const val BASE_URL: String = "https://api.hurriyet.com.tr/v1/"
 /**
@@ -18,6 +20,9 @@ const val EKONOMI_PATH: String = "/ekonomi/"
 const val AVRUPA_PATH: String = "/avrupa/"
 const val MAGAZIN_PATH: String = "/magazin-haberleri/"
 const val EGITIM_PATH: String = "/egitim/"
+
+
+
 
 class Helper {
 

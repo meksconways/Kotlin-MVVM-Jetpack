@@ -6,13 +6,11 @@
         android:layout_height="match_parent"
         tools:context=".tabfragment.galleryfragment.GalleryFragment">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:textColor="@color/primaryColor"
-            android:text="1"/>
+    <ImageView android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:adjustViewBounds="true"
+                android:src="@drawable/cat_avrupa"
+               android:id="@+id/img"
+    />
 
 </FrameLayout>

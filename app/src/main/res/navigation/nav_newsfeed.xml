@@ -9,8 +9,19 @@
               android:name="com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment"
               android:label="list_news_fragment" tools:layout="@layout/list_news_fragment">
         <action android:id="@+id/action_listNewsFragment2_to_galleryFragment3" app:destination="@id/galleryFragment3"/>
+        <action android:id="@+id/action_listNewsFragment2_to_newsDetail"
+                app:destination="@id/newsDetail"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        />
     </fragment>
     <fragment android:id="@+id/galleryFragment3"
               android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
               android:label="gallery_fragment" tools:layout="@layout/gallery_fragment"/>
+    <fragment android:id="@+id/newsDetail" android:name="com.mek.haberlerkotlin.newsdetail.NewsDetail"
+              android:label="news_detail_fragment" tools:layout="@layout/news_detail_fragment">
+
+    </fragment>
 </navigation>

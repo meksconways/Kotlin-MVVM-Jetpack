@@ -6,5 +6,9 @@
 
     <fragment android:id="@+id/galleryFragment"
               android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
-              android:label="gallery_fragment" tools:layout="@layout/gallery_fragment"/>
+              android:label="gallery_fragment" tools:layout="@layout/gallery_fragment">
+        <action android:id="@+id/action_galleryFragment_to_newsDetail2" app:destination="@id/newsDetail2"/>
+    </fragment>
+    <fragment android:id="@+id/newsDetail2" android:name="com.mek.haberlerkotlin.newsdetail.NewsDetail"
+              android:label="news_detail_fragment" tools:layout="@layout/news_detail_fragment"/>
 </navigation>
