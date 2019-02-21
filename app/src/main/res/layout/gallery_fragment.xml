@@ -6,11 +6,15 @@
         android:layout_height="match_parent"
         tools:context=".tabfragment.galleryfragment.GalleryFragment">
 
-    <ImageView android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:adjustViewBounds="true"
-                android:src="@drawable/cat_avrupa"
-               android:id="@+id/img"
-    />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_galleryMain"
+    >
+
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

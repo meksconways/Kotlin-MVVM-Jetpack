@@ -43,34 +43,36 @@ class ListNewsVM @Inject constructor(
 
     init {
 
-        /**
-         * Tam burda NDK kullanılacak
-         */
         fetchTopic()
         fetchSports()
         fetchCountry()
         fetchEconomyNews()
         fetchJournalNews()
 
-
     }
 
     private fun fetchEconomyNews() {
-        compositeDisposable.add(apiRequester.getPathNews(EKONOMI_PATH)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
-                economyData.value = result
-                executionCount.value = executionCount.value?.plus(1)
-            })
+        compositeDisposable.add(
+            apiRequester.getPathNews(EKONOMI_PATH)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    economyData.value = result
+                    executionCount.value = executionCount.value?.plus(1)
+                },
+                    { error -> print(error.localizedMessage) })
+        )
     }
 
     private fun fetchJournalNews() {
         compositeDisposable.add(apiRequester.getPathNews(GUNDEM_PATH)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
+            .subscribe({ result ->
                 journalData.value = result
                 executionCount.value = executionCount.value?.plus(1)
-            })
+            },
+                { error -> print(error.localizedMessage) }
+
+            ))
     }
 
     private fun fetchCountry() {
@@ -87,12 +89,15 @@ class ListNewsVM @Inject constructor(
     }
 
     private fun fetchSports() {
-        compositeDisposable.add(apiRequester.getPathNews(SPOR_PATH)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { result ->
-                sportsData.value = result
-                executionCount.value = executionCount.value?.plus(1)
-            })
+        compositeDisposable.add(
+            apiRequester.getPathNews(SPOR_PATH)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ result ->
+                    sportsData.value = result
+                    executionCount.value = executionCount.value?.plus(1)
+                },
+                    { error -> print(error.localizedMessage) })
+        )
     }
 
 

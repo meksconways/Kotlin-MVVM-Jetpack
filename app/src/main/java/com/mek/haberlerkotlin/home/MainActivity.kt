@@ -2,7 +2,6 @@ package com.mek.haberlerkotlin.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
      * which is packaged with this application.
      */
     private external fun stringFromJNI(): String
-    private external fun simpleSum(): Int
+    private external fun simpleSum(i: Int, i1: Int): Int
 
 
 
@@ -60,7 +59,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         if (savedInstanceState == null) {
             tabManager.switchTab(R.id.act1)
         }
-        Toast.makeText(this,stringFromJNI(),Toast.LENGTH_LONG).show()
+        Toast.makeText(this,simpleSum(3,4).toString(),Toast.LENGTH_LONG).show()
         container_news.setOnClickListener {
             viewmodel.setBottomBarBehavior(false)
         }

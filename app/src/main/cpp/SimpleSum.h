@@ -7,8 +7,6 @@
 
 #include<iostream>
 
-using namespace std;
-
 class SimpleSum {
 
     int x,y;
@@ -20,4 +18,4 @@ public:
 };
 
 
-#endif //HABERLERKOTLİN_SİMPLESUM_H
+#endif //HABERLERKOTLIN_SIMPLESUM_H
