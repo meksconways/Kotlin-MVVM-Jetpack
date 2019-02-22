@@ -35,9 +35,11 @@ class GalleryFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(GalleryVM::class.java)
 
         rv_galleryMain.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        rv_galleryMain.adapter = GalleryMainAdapter()
+        rv_galleryMain.adapter = GalleryMainAdapter(this)
         val snapHelper: SnapHelper = CustomSnapHelper()
         snapHelper.attachToRecyclerView(rv_galleryMain)
+
+
 
     }
 

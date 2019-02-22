@@ -1,5 +1,6 @@
 package com.mek.haberlerkotlin.networking
 
+import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryNewsModel
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -19,5 +20,7 @@ interface ApiService {
         @Query("\$filter") filter: String
     ): Single<List<ListNewsModel>>
 
+    @GET("newsphotogalleries?\$top=20")
+    fun getAllGalleryNews(@Header("apikey") apikey: String): Single<List<GalleryNewsModel>>
 
 }

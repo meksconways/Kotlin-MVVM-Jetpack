@@ -1,13 +1,34 @@
 package com.mek.haberlerkotlin.tabfragment.galleryfragment
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mek.haberlerkotlin.R
+import com.mek.haberlerkotlin.home.MainActivity
+import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryFragment
+import kotlin.coroutines.coroutineContext
 
-class GalleryMainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class GalleryMainAdapter constructor(val fragment: GalleryFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), MenuItemSelectedListener {
+
+
+    init {
+
+    }
+
+    private val galleryMenuItem = mutableListOf<GalleryMenuModel>()
+    private var position = 0
+    override fun setItemSelected(
+        position: Int,
+        galleryMenuAdapter: GalleryMenuAdapter
+    ) {
+        this.position = position
+        galleryMenuAdapter.notifyDataSetChanged()
+    }
 
 
     private var type_menu = 0
@@ -25,14 +46,14 @@ class GalleryMainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        if (viewType == type_menu) {
+        return if (viewType == type_menu) {
 
             val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_gallery_menu, parent, false)
-            return GalleryMenuVH(view)
+            GalleryMenuVH(view)
 
         } else {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_gallery_main_page, parent, false)
-            return GalleryMainPageVH(view)
+            GalleryMainPageVH(view)
         }
 
     }
@@ -44,12 +65,14 @@ class GalleryMainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         val recyclerView: RecyclerView = itemView.findViewById(R.id.rv_galleryMenu)
 
+
     }
 
     class GalleryMainPageVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
 
         }
+        val container: FrameLayout = itemView.findViewById(R.id.container)
     }
 
     override fun getItemCount(): Int {
@@ -61,36 +84,56 @@ class GalleryMainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             val holderMenu = holder as GalleryMenuVH
             holderMenu.recyclerView.layoutManager = LinearLayoutManager(holderMenu.recyclerView.context)
-            val galleryMenuItem = ArrayList<GalleryMenuModel>()
+
             galleryMenuItem.run {
                 add(
-                        GalleryMenuModel(
-                            holderMenu.recyclerView.resources.getColor(R.color.primaryColor),
-                            holderMenu.recyclerView.resources.getDrawable(R.drawable.cat_dunya),
-                            "Dünya"
-                        )
+                    GalleryMenuModel(
+                        holderMenu.recyclerView.resources.getColor(R.color.mavi),
+                        holderMenu.recyclerView.resources.getDrawable(R.drawable.ic_tum_haberler),
+                        "Tümü",
+                        true
                     )
+                )
                 add(
-                        GalleryMenuModel(
-                            holderMenu.recyclerView.resources.getColor(R.color.primaryColor),
-                            holderMenu.recyclerView.resources.getDrawable(R.drawable.cat_ekonomi),
-                            "Ekonomi"
-                        )
+                    GalleryMenuModel(
+                        holderMenu.recyclerView.resources.getColor(R.color.secondaryDarkColor),
+                        holderMenu.recyclerView.resources.getDrawable(R.drawable.ic_money),
+                        "Ekonomi",
+                        false
                     )
+                )
                 add(
-                        GalleryMenuModel(
-                            holderMenu.recyclerView.resources.getColor(R.color.primaryColor),
-                            holderMenu.recyclerView.resources.getDrawable(R.drawable.cat_spor),
-                            "Spor"
-                        )
+                    GalleryMenuModel(
+                        holderMenu.recyclerView.resources.getColor(R.color.teal),
+                        holderMenu.recyclerView.resources.getDrawable(R.drawable.ic_dunya),
+                        "Dünya",
+                        false
                     )
+                )
+                add(
+                    GalleryMenuModel(
+                        holderMenu.recyclerView.resources.getColor(R.color.turuncu),
+                        holderMenu.recyclerView.resources.getDrawable(R.drawable.ic_sport),
+                        "Spor",
+                        false
+                    )
+                )
+
             }
-            holderMenu.recyclerView.adapter = GalleryMenuAdapter(galleryMenuItem)
+            holderMenu.recyclerView.adapter = GalleryMenuAdapter(galleryMenuItem, this)
 
-        } else {
 
+        }else{
+
+            val holderMain = holder as GalleryMainPageVH
+            val fragmentManager: FragmentManager = (fragment.activity)!!.supportFragmentManager
+            fragmentManager.beginTransaction()
+                .replace(R.id.container,MainGalleryFragment.newInstance())
+                .disallowAddToBackStack()
+                .commit()
 
 
         }
+
     }
 }
