@@ -23,4 +23,11 @@ interface ApiService {
     @GET("newsphotogalleries?\$top=20")
     fun getAllGalleryNews(@Header("apikey") apikey: String): Single<List<GalleryNewsModel>>
 
+    @GET("newsphotogalleries?\$top=20")
+    fun getPathGalleryNews(
+        @Header("apikey") apikey: String,
+        @Query("\$filter") filter: String
+    ): Single<List<GalleryNewsModel>>
+
+
 }

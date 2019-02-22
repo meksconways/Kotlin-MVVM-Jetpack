@@ -25,4 +25,9 @@ class ApiRequester @Inject constructor(private val apiService: ApiService) {
             .subscribeOn(Schedulers.io())
     }
 
+    fun getPathGalleryNews(path: String): Single<List<GalleryNewsModel>> {
+        return apiService.getPathGalleryNews(API_KEY, "Path eq '$path'")
+            .subscribeOn(Schedulers.io())
+    }
+
 }

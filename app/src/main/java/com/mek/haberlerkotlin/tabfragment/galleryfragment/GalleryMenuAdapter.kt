@@ -34,7 +34,7 @@ class GalleryMenuAdapter(
             for (pos in 0 until galleryMenuItem.size) {
                 galleryMenuItem[pos].isSelected = pos == position
             }
-            //listener.setItemSelected(position, this)
+            listener.setItemSelected(galleryMenuItem[position].Path)
             notifyDataSetChanged()
         }
     }

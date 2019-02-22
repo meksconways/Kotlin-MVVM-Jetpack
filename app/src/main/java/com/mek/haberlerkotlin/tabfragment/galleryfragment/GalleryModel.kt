@@ -7,7 +7,8 @@ data class GalleryMenuModel(
     var color: Int,
     var photo: Drawable,
     var name: String,
-    var isSelected: Boolean
+    var isSelected: Boolean,
+    val Path: String
 ) {
 
     class Builder {
@@ -16,6 +17,7 @@ data class GalleryMenuModel(
         private lateinit var photo: Drawable
         private var color = 0
         private var isSelected = false
+        private var Path = "tümü"
 
         fun name(name: String) = apply { this.name = name }
         fun photo(photo: Drawable) = apply { this.photo = photo }
@@ -26,7 +28,9 @@ data class GalleryMenuModel(
             color,
             photo,
             name,
-            isSelected
+            isSelected,
+            Path
+
         )
     }
 

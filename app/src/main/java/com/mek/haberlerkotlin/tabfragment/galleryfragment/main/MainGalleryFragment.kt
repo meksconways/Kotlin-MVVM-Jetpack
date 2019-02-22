@@ -3,10 +3,14 @@ package com.mek.haberlerkotlin.tabfragment.galleryfragment.main
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.service.voice.VoiceInteractionService
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 
@@ -19,7 +23,13 @@ import javax.inject.Inject
 class MainGalleryFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainGalleryFragment()
+        fun newInstance(type: String): MainGalleryFragment {
+            val fragment = MainGalleryFragment()
+            val args = Bundle()
+            args.putString("type", type)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -40,18 +50,24 @@ class MainGalleryFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this,factory).get(MainGalleryVM::class.java)
+        viewModel = ViewModelProviders.of(activity!!,factory).get(MainGalleryVM::class.java)
         observeViewModel()
-
+        val s = arguments?.getString("type")
+        viewModel.setNewsType(s!!)
         rv_gallery.layoutManager = GridLayoutManager(context,2)
         rv_gallery.adapter = MainGalleryAdapter(this,viewModel)
 
     }
 
     private fun observeViewModel() {
-
+        viewModel.getNewsType().observe(this, Observer { viewModel.fetchNews() })
         viewModel.getLoading().observe(this, Observer { loading ->
             progressBar.visibility = loading
+            if (progressBar.isGone){
+                rv_gallery.visibility = View.VISIBLE
+            }else{
+                rv_gallery.visibility = View.GONE
+            }
         })
     }
 
