@@ -1,8 +1,6 @@
 package com.mek.haberlerkotlin.utils
 
 
-
-
 /** The base URL of the API */
 const val BASE_URL: String = "https://api.hurriyet.com.tr/v1/"
 /**
@@ -22,11 +20,13 @@ const val MAGAZIN_PATH: String = "/magazin-haberleri/"
 const val EGITIM_PATH: String = "/egitim/"
 
 
-
-
 class Helper {
 
     companion object {
+
+        fun pathParse(path: String): String = path.split("/")[1]
+
+
         var month = HashMap<Int, String>()
         private fun createHashMap() {
             if (month.size == 0) {

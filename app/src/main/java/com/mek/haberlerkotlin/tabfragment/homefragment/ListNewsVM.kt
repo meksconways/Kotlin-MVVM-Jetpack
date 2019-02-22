@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mek.haberlerkotlin.networking.ApiRequester
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
-import com.mek.haberlerkotlin.utils.DUNYA_PATH
-import com.mek.haberlerkotlin.utils.EKONOMI_PATH
-import com.mek.haberlerkotlin.utils.GUNDEM_PATH
-import com.mek.haberlerkotlin.utils.SPOR_PATH
+import com.mek.haberlerkotlin.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -35,6 +32,12 @@ class ListNewsVM @Inject constructor(
     fun getJournalData(): LiveData<List<ListNewsModel>> = journalData
     fun getEconomyData(): LiveData<List<ListNewsModel>> = economyData
 
+    private val sporHaberleri = ArrayList<ListNewsModel>()
+    private val dunyaHaberleri = ArrayList<ListNewsModel>()
+    private val gundemHaberleri = ArrayList<ListNewsModel>()
+    private val ekonomiHaberleri = ArrayList<ListNewsModel>()
+    private val tumHaberler = ArrayList<ListNewsModel>()
+
     private fun setLoading(v: Boolean) {
         loading.value = v
     }
@@ -42,13 +45,41 @@ class ListNewsVM @Inject constructor(
     fun getLoading(): LiveData<Boolean> = loading
 
     init {
-
         fetchTopic()
-        fetchSports()
-        fetchCountry()
-        fetchEconomyNews()
-        fetchJournalNews()
+    }
 
+    private fun fetchTopic() {
+        compositeDisposable.add(apiRequester.getAllNews()
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { setLoading(true) }
+            .doOnEvent { _, _ -> setLoading(false) }
+            .subscribe(
+                { result ->
+                    data.value = result
+                    tumHaberler.addAll(result)
+                    setKategoriHaberler()
+                    executionCount.value = executionCount.value?.plus(10)
+                },
+                { error -> print(error.localizedMessage) }
+            ))
+    }
+
+    fun setKategoriHaberler() {
+
+        for (index in 0 until tumHaberler.size) {
+            var path = Helper.pathParse(tumHaberler[index].path)
+            path = "/$path/"
+            when (path) {
+                DUNYA_PATH -> dunyaHaberleri.add(tumHaberler[index])
+                SPOR_PATH -> sporHaberleri.add(tumHaberler[index])
+                EKONOMI_PATH -> ekonomiHaberleri.add(tumHaberler[index])
+                GUNDEM_PATH -> gundemHaberleri.add(tumHaberler[index])
+            }
+        }
+        countriesData.value = dunyaHaberleri
+        sportsData.value = sporHaberleri
+        economyData.value = ekonomiHaberleri
+        journalData.value = gundemHaberleri
     }
 
     private fun fetchEconomyNews() {
@@ -57,7 +88,8 @@ class ListNewsVM @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ result ->
                     economyData.value = result
-                    executionCount.value = executionCount.value?.plus(1)
+                    setKategoriHaberler()
+                    executionCount.value = executionCount.value?.plus(10)
                 },
                     { error -> print(error.localizedMessage) })
         )
@@ -98,21 +130,6 @@ class ListNewsVM @Inject constructor(
                 },
                     { error -> print(error.localizedMessage) })
         )
-    }
-
-
-    private fun fetchTopic() {
-        compositeDisposable.add(apiRequester.getAllNews()
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { setLoading(true) }
-            .doOnEvent { _, _ -> setLoading(false) }
-            .subscribe(
-                { result ->
-                    data.value = result
-                    executionCount.value = executionCount.value?.plus(1)
-                },
-                { error -> print(error.localizedMessage) }
-            ))
     }
 
 

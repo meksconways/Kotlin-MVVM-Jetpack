@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface ApiService {
 
 
-    @GET("articles?\$select=Title,Files,Id&\$expand=Files&\$top=15")
+    @GET("articles?\$select=Title,Files,Path,Id,CreatedDate&\$expand=Files")
     fun getAllNews(@Header("apikey") apikey: String): Single<List<ListNewsModel>>
 
 
@@ -20,10 +20,10 @@ interface ApiService {
         @Query("\$filter") filter: String
     ): Single<List<ListNewsModel>>
 
-    @GET("newsphotogalleries?\$top=20")
+    @GET("newsphotogalleries?\$top=15")
     fun getAllGalleryNews(@Header("apikey") apikey: String): Single<List<GalleryNewsModel>>
 
-    @GET("newsphotogalleries?\$top=20")
+    @GET("newsphotogalleries?\$top=15")
     fun getPathGalleryNews(
         @Header("apikey") apikey: String,
         @Query("\$filter") filter: String
