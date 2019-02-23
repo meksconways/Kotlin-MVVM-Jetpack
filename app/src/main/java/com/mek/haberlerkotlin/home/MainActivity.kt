@@ -3,6 +3,7 @@ package com.mek.haberlerkotlin.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -26,13 +27,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         tabManager.switchTab(item.itemId)
         return true
     }
+
     /**
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
     private external fun stringFromJNI(): String
-    private external fun simpleSum(i: Int, i1: Int): Int
 
+    private external fun simpleSum(i: Int, i1: Int): Int
 
 
     companion object {
@@ -42,7 +44,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             System.loadLibrary("native-lib")
         }
     }
-
 
 
     private lateinit var viewmodel: MainActivityVM
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         if (savedInstanceState == null) {
             tabManager.switchTab(R.id.act1)
         }
-        Toast.makeText(this,simpleSum(3,4).toString(),Toast.LENGTH_LONG).show()
+        Toast.makeText(this, simpleSum(3, 4).toString(), Toast.LENGTH_LONG).show()
         container_news.setOnClickListener {
             viewmodel.setBottomBarBehavior(false)
         }
@@ -84,11 +85,13 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private fun slideUp(child: BottomNavigationView) {
         child.clearAnimation()
         child.animate().translationY(0F).duration = 200
+        child.visibility = View.VISIBLE
     }
 
     private fun slideDown(child: BottomNavigationView) {
         child.clearAnimation()
         child.animate().translationY(bottom_nav.height.toFloat()).duration = 200
+        child.visibility = View.GONE
     }
 
 
@@ -134,7 +137,3 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
 }
-
-
-
-

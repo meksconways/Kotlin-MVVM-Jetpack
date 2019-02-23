@@ -3,6 +3,7 @@ package com.mek.haberlerkotlin.base
 import android.content.Context
 import com.mek.haberlerkotlin.home.MainActivity
 import com.mek.haberlerkotlin.networking.NetworkModule
+import com.mek.haberlerkotlin.newsdetail.NewsDetail
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryFragment
 import com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment
@@ -20,6 +21,7 @@ interface AppComponent {
     fun inject(listNewsFragment: ListNewsFragment)
     fun inject(mainGalleryFragment: MainGalleryFragment)
     fun inject(galleryFragment: GalleryFragment)
+    fun inject(newsDetail: NewsDetail)
 
     @Component.Builder
     interface Builder {

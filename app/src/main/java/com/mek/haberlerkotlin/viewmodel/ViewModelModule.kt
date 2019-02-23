@@ -1,7 +1,7 @@
 package com.mek.haberlerkotlin.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.mek.haberlerkotlin.home.MainActivityVM
+import com.mek.haberlerkotlin.newsdetail.NewsDetailVM
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryVM
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryVM
 import com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsVM
@@ -27,6 +27,10 @@ abstract class ViewModelModule {
     @ViewModelKey(GalleryVM::class)
     abstract fun bindGalleryVM(viewModel: GalleryVM): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewsDetailVM::class)
+    abstract fun bindNewsDetailVM(viewModel: NewsDetailVM): ViewModel
 
 
 }

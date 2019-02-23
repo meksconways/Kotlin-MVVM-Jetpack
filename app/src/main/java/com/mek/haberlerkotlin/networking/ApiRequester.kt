@@ -1,5 +1,6 @@
 package com.mek.haberlerkotlin.networking
 
+import com.mek.haberlerkotlin.newsdetail.DetailModel
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryNewsModel
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import com.mek.haberlerkotlin.utils.API_KEY
@@ -14,6 +15,9 @@ class ApiRequester @Inject constructor(private val apiService: ApiService) {
         return apiService.getAllNews(API_KEY)
             .subscribeOn(Schedulers.io())
     }
+
+    fun getArticleNewsDetail(newsID: String): Single<DetailModel> =
+        apiService.getArticleNewsDetail(API_KEY, newsID).subscribeOn(Schedulers.io())
 
     fun getPathNews(path: String): Single<List<ListNewsModel>> {
         return apiService.getPathNews(API_KEY, "Path eq '$path'")
