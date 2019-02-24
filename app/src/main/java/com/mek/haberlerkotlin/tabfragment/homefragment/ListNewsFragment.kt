@@ -14,10 +14,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.*
 import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.base.MyApplication
+import com.mek.haberlerkotlin.home.MainActivityVM
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import com.mek.haberlerkotlin.utils.DUNYA_PATH
 import com.mek.haberlerkotlin.utils.EKONOMI_PATH
 import com.mek.haberlerkotlin.utils.GUNDEM_PATH
+import com.mek.haberlerkotlin.utils.SPOR_PATH
+import com.mek.haberlerkotlin.viewallfragment.AllPathNewsVM
 import com.mek.haberlerkotlin.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.layout_subnews.view.*
 import kotlinx.android.synthetic.main.layout_topic.*
@@ -51,9 +54,11 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
     }
 
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         MyApplication.getAppComponent(context).inject(this)
+
     }
 
     /**
@@ -70,9 +75,14 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
         })
     }
 
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(ListNewsVM::class.java)
+        val mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
+        mainViewModel.setTitle("Hürriyet Haber")
+        mainViewModel.setHasBackButton(false)
         val linLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         lyt_0.rv_topics.layoutManager = linLayoutManager
         lyt_0.rv_topics.adapter = ListNewsAdapter(this, viewModel, this)
@@ -102,6 +112,20 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
         val snapHelperSports: SnapHelper = LinearSnapHelper()
         snapHelperSports.attachToRecyclerView(lyt_spor.rv_subNews)
 
+        lyt_spor.txt_viewAll.setOnClickListener {
+            clickViewAll(SPOR_PATH)
+        }
+        lyt_journal.txt_viewAll.setOnClickListener {
+            clickViewAll(GUNDEM_PATH)
+        }
+        lyt_economy.txt_viewAll.setOnClickListener {
+            clickViewAll(EKONOMI_PATH)
+        }
+        lyt_dunya.txt_viewAll.setOnClickListener {
+            clickViewAll(DUNYA_PATH)
+        }
+
+
         lyt_dunya.txt_title.text = "Dünya Haberleri"
         lyt_dunya.rv_subNews.layoutManager = GridLayoutManager(
             context, 2,
@@ -130,6 +154,16 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
         snapHelperJournal.attachToRecyclerView(lyt_journal.rv_subNews)
 
         observeViewModel()
+
+    }
+
+    private fun clickViewAll(cat: String) {
+
+        val pathNewsViewModel = ViewModelProviders.of(activity!!,factory).get(AllPathNewsVM::class.java)
+        pathNewsViewModel.setPathData(cat)
+
+        view!!.findNavController().navigate(R.id.action_listNewsFragment2_to_allPathNewsFragment)
+
 
     }
 

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -25,6 +24,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         tabManager.switchTab(item.itemId)
+        when(item.itemId){
+            R.id.act1 -> viewmodel.setTitle("Hürriyet Haber")
+        }
         return true
     }
 
@@ -47,7 +49,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
 
     private lateinit var viewmodel: MainActivityVM
-    private var bbHeight: Float = 0F
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -60,10 +62,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         if (savedInstanceState == null) {
             tabManager.switchTab(R.id.act1)
         }
-        Toast.makeText(this, simpleSum(3, 4).toString(), Toast.LENGTH_LONG).show()
-        container_news.setOnClickListener {
-            viewmodel.setBottomBarBehavior(false)
-        }
+        // Toast.makeText(this, simpleSum(3, 4).toString(), Toast.LENGTH_LONG).show()
 
 //        val tv = TypedValue()
 //
@@ -73,14 +72,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         viewmodel = ViewModelProviders.of(this).get(MainActivityVM::class.java)
         observeViewModel()
-
-
-    }
-
-    override fun onResume() {
-        super.onResume()
         viewmodel.setBottomBarBehavior(true)
+
+
     }
+
 
     private fun slideUp(child: BottomNavigationView) {
         child.clearAnimation()
@@ -104,17 +100,25 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
         })
         viewmodel.getTitle().observe(this, Observer<String> {
-            actionBar?.run {
+            supportActionBar?.run {
                 title = it
             }
         })
         viewmodel.getHasBackButton().observe(this, Observer<Boolean> {
-            actionBar?.run {
+            supportActionBar?.run {
                 setDisplayHomeAsUpEnabled(it)
             }
         })
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        when (item?.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

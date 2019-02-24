@@ -16,6 +16,8 @@
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim"
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"
         />
+        <action android:id="@+id/action_listNewsFragment2_to_allPathNewsFragment"
+                app:destination="@id/allPathNewsFragment"/>
     </fragment>
     <fragment android:id="@+id/galleryFragment3"
               android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
@@ -24,4 +26,7 @@
               android:label="news_detail_fragment" tools:layout="@layout/news_detail_fragment">
 
     </fragment>
+    <fragment android:id="@+id/allPathNewsFragment"
+              android:name="com.mek.haberlerkotlin.viewallfragment.AllPathNewsFragment"
+              android:label="all_path_news_fragment" tools:layout="@layout/all_path_news_fragment"/>
 </navigation>

@@ -5,6 +5,7 @@ import com.mek.haberlerkotlin.newsdetail.NewsDetailVM
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryVM
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryVM
 import com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsVM
+import com.mek.haberlerkotlin.viewallfragment.AllPathNewsVM
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -31,6 +32,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NewsDetailVM::class)
     abstract fun bindNewsDetailVM(viewModel: NewsDetailVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AllPathNewsVM::class)
+    abstract fun bindAllPathNewsVM(viewModel: AllPathNewsVM): ViewModel
 
 
 }

@@ -7,6 +7,7 @@ import com.mek.haberlerkotlin.newsdetail.NewsDetail
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryFragment
 import com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment
+import com.mek.haberlerkotlin.viewallfragment.AllPathNewsFragment
 import com.mek.haberlerkotlin.viewmodel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -22,6 +23,7 @@ interface AppComponent {
     fun inject(mainGalleryFragment: MainGalleryFragment)
     fun inject(galleryFragment: GalleryFragment)
     fun inject(newsDetail: NewsDetail)
+    fun inject(allPathNewsFragment: AllPathNewsFragment)
 
     @Component.Builder
     interface Builder {

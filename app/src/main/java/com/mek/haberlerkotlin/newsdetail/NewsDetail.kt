@@ -54,6 +54,8 @@ class NewsDetail : Fragment() {
         viewModel = ViewModelProviders.of(this, factory).get(NewsDetailVM::class.java)
         _viewModel = activity?.let { ViewModelProviders.of(it).get(MainActivityVM::class.java) }!!
         _viewModel.setBottomBarBehavior(false)
+        _viewModel.setHasBackButton(true)
+        _viewModel.setTitle("Haber Detay")
         viewModel.setNewsId(itemId)
         viewModel.fetchDetail()
         observeViewModel()

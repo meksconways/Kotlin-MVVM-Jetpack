@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.mek.haberlerkotlin.R
+import com.mek.haberlerkotlin.home.MainActivityVM
 
 class ReadLaterFragment : Fragment() {
 
@@ -27,6 +28,9 @@ class ReadLaterFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ReadLaterVM::class.java)
+        val mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
+        mainViewModel.setTitle("Sonra Oku")
+        mainViewModel.setHasBackButton(false)
 
         // TODO: Use the ViewModel
     }
