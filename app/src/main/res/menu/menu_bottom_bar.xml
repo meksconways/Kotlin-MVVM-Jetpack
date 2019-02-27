@@ -1,41 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+>
     <item
-        android:id="@+id/act1"
-        android:color="@color/primaryColor"
-        android:icon="@drawable/ic_news"
-        android:title="Haberler"
-        app:showAsAction="withText"
+            android:id="@+id/home1"
+            android:color="@color/primaryColor"
+            android:icon="@drawable/ic_news"
+            android:title="Haberler"
+            app:showAsAction="withText"
 
-        />
+    />
     <item
-        android:id="@+id/act2"
-        android:color="@android:color/holo_green_dark"
-        android:icon="@drawable/ic_gallery"
-        android:title="Galeri"
-        app:showAsAction="withText"
-        />
+            android:id="@+id/home2"
+            android:color="@android:color/holo_green_dark"
+            android:icon="@drawable/ic_gallery"
+            android:title="Galeri"
+            app:showAsAction="withText"
+    />
     <item
-        android:id="@+id/act3"
-        android:color="@android:color/holo_orange_dark"
-        android:icon="@drawable/ic_videos"
-        android:title="Video"
-        app:showAsAction="withText"
-        />
-    <item
-        android:id="@+id/act4"
-        android:color="#FF5252"
-        android:icon="@drawable/ic_writers"
-        android:title="Yazarlar"
-        app:showAsAction="withText"
-        />
-    <item
-        android:id="@+id/act5"
-        android:color="#ff4232"
-        android:icon="@drawable/ic_bookmark"
-        android:title="Sonra Oku"
-        app:showAsAction="withText"
-        />
+            android:id="@+id/home3"
+            android:color="@android:color/holo_green_dark"
+            android:icon="@drawable/ic_kose_yazisi"
+            android:title="Köşe Yazıları"
+            app:showAsAction="withText"
+    />
+
 </menu>

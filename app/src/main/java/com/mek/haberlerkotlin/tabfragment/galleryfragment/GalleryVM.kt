@@ -10,6 +10,8 @@ class GalleryVM @Inject constructor(apiRequester: ApiRequester): ViewModel() {
 
     private val newsType = MutableLiveData<String>("tümü")
 
+
+
     fun getNewsType(): LiveData<String> = newsType
 
     fun setNewsType(news: String){

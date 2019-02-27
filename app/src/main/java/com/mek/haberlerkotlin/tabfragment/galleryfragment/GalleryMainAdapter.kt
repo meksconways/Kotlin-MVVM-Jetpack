@@ -82,7 +82,7 @@ class GalleryMainAdapter(
 
         }
 
-        val container: FrameLayout = itemView.findViewById(R.id.container)
+        val container: FrameLayout = itemView.findViewById(R.id.containerSub)
     }
 
     override fun getItemCount(): Int {
@@ -145,7 +145,7 @@ class GalleryMainAdapter(
 
             val fragmentManager: FragmentManager = (fragment.activity)!!.supportFragmentManager
             fragmentManager.beginTransaction()
-                .replace(R.id.container, MainGalleryFragment.newInstance(newsType))
+                .replace(R.id.containerSub, MainGalleryFragment.newInstance(newsType))
                 .disallowAddToBackStack()
                 .commit()
 

@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/nav_newsfeed"
+            android:id="@+id/home1"
             app:startDestination="@id/listNewsFragment2">
 
     <fragment android:id="@+id/listNewsFragment2"

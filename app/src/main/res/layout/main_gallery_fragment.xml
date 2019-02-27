@@ -6,15 +6,17 @@
         android:layout_height="match_parent"
         tools:context=".tabfragment.galleryfragment.main.MainGalleryFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/rv_gallery"
-            android:layout_marginEnd="6dp"
-            android:layout_marginStart="6dp"
-    >
-
-    </androidx.recyclerview.widget.RecyclerView>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_demo_child_count="4"
+            app:shimmer_demo_grid_child_count="2"
+            app:shimmer_demo_layout="@layout/layout_demo_grid"
+            app:shimmer_demo_layout_manager_type="grid"
+            app:shimmer_demo_angle="20"
+    />
 
     <ProgressBar
             android:layout_width="wrap_content"

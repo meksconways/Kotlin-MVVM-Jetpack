@@ -22,6 +22,7 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="0dp"
                  android:visibility="visible"
@@ -29,112 +30,11 @@
                  app:layout_constraintLeft_toLeftOf="parent"
                  app:layout_constraintRight_toRightOf="parent"
                  app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-                 android:id="@+id/container_news">
-
-
-        <fragment
-
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:defaultNavHost="true"
-                android:id="@+id/newsTab"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-
-        />
-
+                 android:id="@+id/container">
 
     </FrameLayout>
-    <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 android:visibility="gone"
-
-                 app:layout_constraintTop_toBottomOf="@id/toolbar"
-                 app:layout_constraintLeft_toLeftOf="parent"
-                 app:layout_constraintRight_toRightOf="parent"
-                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-                 android:id="@+id/container_gallery">
 
 
-        <fragment
-
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:defaultNavHost="true"
-                android:id="@+id/galleryTab"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-
-        />
-
-
-    </FrameLayout>
-    <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 android:visibility="gone"
-
-                 app:layout_constraintTop_toBottomOf="@id/toolbar"
-                 app:layout_constraintLeft_toLeftOf="parent"
-                 app:layout_constraintRight_toRightOf="parent"
-                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-                 android:id="@+id/container_columnist">
-
-
-        <fragment
-
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:defaultNavHost="true"
-                android:id="@+id/columnistTab"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-
-        />
-
-
-    </FrameLayout>
-    <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 android:visibility="gone"
-                 app:layout_constraintTop_toBottomOf="@id/toolbar"
-                 app:layout_constraintLeft_toLeftOf="parent"
-                 app:layout_constraintRight_toRightOf="parent"
-                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-                 android:id="@+id/container_writer">
-
-
-        <fragment
-
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:defaultNavHost="true"
-                android:id="@+id/writerTab"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-
-        />
-
-
-    </FrameLayout>
-    <FrameLayout android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 android:visibility="gone"
-
-                 app:layout_constraintTop_toBottomOf="@id/toolbar"
-                 app:layout_constraintLeft_toLeftOf="parent"
-                 app:layout_constraintRight_toRightOf="parent"
-                 app:layout_constraintBottom_toTopOf="@id/bottom_nav"
-                 android:id="@+id/container_readlater">
-
-
-        <fragment
-
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                app:defaultNavHost="true"
-                android:id="@+id/readlaterTab"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-
-        />
-
-
-    </FrameLayout>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

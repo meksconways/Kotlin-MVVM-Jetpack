@@ -3,10 +3,11 @@ package com.mek.haberlerkotlin.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mek.haberlerkotlin.utils.TITLE
 
 class MainActivityVM : ViewModel() {
 
-    private val title = MutableLiveData<String>("Haberler Kotlin")
+    private val title = MutableLiveData<String>(TITLE)
     private val hasBackButton = MutableLiveData<Boolean>(false)
     private val bottomBarBehavior = MutableLiveData<Boolean>(false)
 

@@ -62,6 +62,9 @@ class MainGalleryFragment : Fragment() {
         viewModel.setNewsType(s!!)
         rv_gallery.layoutManager = GridLayoutManager(context,2)
         rv_gallery.adapter = MainGalleryAdapter(this,viewModel)
+        rv_gallery.showShimmerAdapter()
+        //rv_gallery.hideShimmerAdapter()
+        progressBar.visibility = View.GONE
         mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
 
         mainViewModel.setHasBackButton(false)
@@ -79,11 +82,19 @@ class MainGalleryFragment : Fragment() {
 
         })
         viewModel.getLoading().observe(this, Observer { loading ->
-            progressBar.visibility = loading
-            if (progressBar.isGone){
-                rv_gallery.visibility = View.VISIBLE
+
+            if (loading == View.GONE){
+                rv_gallery.hideShimmerAdapter()
             }else{
-                rv_gallery.visibility = View.GONE
+                rv_gallery.showShimmerAdapter()
+            }
+
+
+            //progressBar.visibility = loading
+            if (progressBar.isGone){
+                //rv_gallery.visibility = View.VISIBLE
+            }else{
+                //rv_gallery.visibility = View.GONE
             }
         })
     }

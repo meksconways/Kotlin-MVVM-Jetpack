@@ -16,10 +16,7 @@ import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.base.MyApplication
 import com.mek.haberlerkotlin.home.MainActivityVM
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
-import com.mek.haberlerkotlin.utils.DUNYA_PATH
-import com.mek.haberlerkotlin.utils.EKONOMI_PATH
-import com.mek.haberlerkotlin.utils.GUNDEM_PATH
-import com.mek.haberlerkotlin.utils.SPOR_PATH
+import com.mek.haberlerkotlin.utils.*
 import com.mek.haberlerkotlin.viewallfragment.AllPathNewsVM
 import com.mek.haberlerkotlin.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.layout_subnews.view.*
@@ -33,12 +30,12 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
 
 
     override fun setSelectedNews(model: ListNewsModel) {
-        view!!.findNavController().navigate(
-            R.id.action_listNewsFragment2_to_newsDetail,
-            bundleOf("model" to model.id),
-            null,
-            null
-        )
+       this.view?.findNavController()?.navigate(
+               R.id.action_listNewsFragment2_to_newsDetail,
+               bundleOf("model" to model.id),
+               null,
+               null
+           )
     }
 
     @Inject
@@ -80,9 +77,7 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(ListNewsVM::class.java)
-        val mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
-        mainViewModel.setTitle("Hürriyet Haber")
-        mainViewModel.setHasBackButton(false)
+        TITLE = "Hürriyet Haber"
         val linLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         lyt_0.rv_topics.layoutManager = linLayoutManager
         lyt_0.rv_topics.adapter = ListNewsAdapter(this, viewModel, this)

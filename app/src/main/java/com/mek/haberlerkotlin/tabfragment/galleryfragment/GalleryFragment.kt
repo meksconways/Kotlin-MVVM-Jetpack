@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
 
@@ -45,14 +46,16 @@ class GalleryFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this,factory).get(GalleryVM::class.java)
         val vm = ViewModelProviders.of(activity!!,factory).get(MainGalleryVM::class.java)
-
         rv_galleryMain.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         rv_galleryMain.adapter = GalleryMainAdapter(this,viewModel,this,vm)
         val snapHelper: SnapHelper = CustomSnapHelper()
         snapHelper.attachToRecyclerView(rv_galleryMain)
 
 
-
     }
+
+
+
+
 
 }
