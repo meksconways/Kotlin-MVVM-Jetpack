@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.mek.haberlerkotlin.R
+import com.mek.haberlerkotlin.home.MainActivityVM
 import com.mek.haberlerkotlin.utils.TITLE
 
 class ColumnFragment : Fragment() {
@@ -28,8 +29,9 @@ class ColumnFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ColumnVM::class.java)
-        TITLE = "Köşe Yazıları"
-        // TODO: Use the ViewModel
+
+        val mainViewModel = ViewModelProviders.of(activity!!)[MainActivityVM::class.java]
+        mainViewModel.setTitle("Hürriyet Haber")
     }
 
 }

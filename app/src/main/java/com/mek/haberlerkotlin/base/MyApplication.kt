@@ -23,3 +23,5 @@ class MyApplication : Application() {
 
 
 }
+
+fun Context.getAppComponent() : AppComponent = (applicationContext as MyApplication).component

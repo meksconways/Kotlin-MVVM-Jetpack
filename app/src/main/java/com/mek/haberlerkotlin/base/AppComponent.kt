@@ -18,7 +18,7 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(application: MyApplication)
-    fun inject(application: MainActivity)
+    fun inject(mainActivity: MainActivity)
     fun inject(listNewsFragment: ListNewsFragment)
     fun inject(mainGalleryFragment: MainGalleryFragment)
     fun inject(galleryFragment: GalleryFragment)

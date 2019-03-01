@@ -6,44 +6,17 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mek.haberlerkotlin.R
-import com.mek.haberlerkotlin.base.MyApplication
+import com.mek.haberlerkotlin.base.getAppComponent
 import com.mek.haberlerkotlin.navigation.BottomNavController
 import com.mek.haberlerkotlin.navigation.setUpNavigation
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-
-
-
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    private external fun stringFromJNI(): String
-
-    private external fun simpleSum(i: Int, i1: Int): Int
-
-
-    companion object {
-
-        // Used to load the 'native-lib' library on application startup.
-        init {
-            System.loadLibrary("native-lib")
-        }
-    }
-
-
     private lateinit var viewmodel: MainActivityVM
-
-
-
 
     private val navController by lazy(LazyThreadSafetyMode.NONE) {
         Navigation.findNavController(this, R.id.container)
@@ -55,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        MyApplication.getAppComponent(this).inject(this)
+        getAppComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
@@ -70,9 +43,7 @@ class MainActivity : AppCompatActivity() {
         viewmodel.setBottomBarBehavior(true)
 
 
-
     }
-
 
 
     override fun onSupportNavigateUp(): Boolean = navController
@@ -122,7 +93,6 @@ class MainActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
-
 
 
 }

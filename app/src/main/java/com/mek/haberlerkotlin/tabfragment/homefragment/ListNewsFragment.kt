@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.*
 import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.base.MyApplication
+import com.mek.haberlerkotlin.base.getAppComponent
 import com.mek.haberlerkotlin.home.MainActivityVM
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import com.mek.haberlerkotlin.utils.*
@@ -54,7 +55,7 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        MyApplication.getAppComponent(context).inject(this)
+        context.getAppComponent().inject(this)
 
     }
 
@@ -76,8 +77,11 @@ class ListNewsFragment : Fragment(), NewsSelectedListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val mainViewModel = ViewModelProviders.of(activity!!)[MainActivityVM::class.java]
+        mainViewModel.setTitle("Hürriyet Haber")
+
         viewModel = ViewModelProviders.of(this, factory).get(ListNewsVM::class.java)
-        TITLE = "Hürriyet Haber"
         val linLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         lyt_0.rv_topics.layoutManager = linLayoutManager
         lyt_0.rv_topics.adapter = ListNewsAdapter(this, viewModel, this)
