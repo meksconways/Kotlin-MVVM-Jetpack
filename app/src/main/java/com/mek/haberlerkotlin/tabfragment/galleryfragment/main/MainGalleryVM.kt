@@ -66,7 +66,7 @@ class MainGalleryVM @Inject constructor(private val apiRequester: ApiRequester) 
 
     override fun onCleared() {
         if (compositeDisposable.size() > 0) {
-            compositeDisposable.clear()
+            compositeDisposable.dispose()
         }
     }
 

@@ -11,6 +11,7 @@
     <color name="mavi">#0d47a1</color>
     <color name="teal">#006064</color>
     <color name="turuncu">#bf360c</color>
-
+    <color name="lightgrey">#a9a9a9</color>
     <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 </resources>

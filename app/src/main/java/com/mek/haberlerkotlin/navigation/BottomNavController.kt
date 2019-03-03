@@ -8,11 +8,13 @@ import androidx.annotation.IdRes
 import androidx.annotation.NavigationRes
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mek.haberlerkotlin.R
+import com.mek.haberlerkotlin.home.MainActivityVM
 
 class BottomNavController(
     val context: Context,
@@ -58,7 +60,7 @@ class BottomNavController(
         R.id.home1 -> R.navigation.nav_newsfeed
         R.id.home2 -> R.navigation.nav_gallery
         R.id.home3 -> R.navigation.nav_column
-        else -> throw RuntimeException("ID ler graphlarla aynı olmalı :)")
+        else -> throw RuntimeException("ID ler graphlarla aynı olmalı")
     }
 
     fun onNavigationItemSelected(itemId: Int = navigationBackStack.last()): Boolean {
@@ -66,6 +68,7 @@ class BottomNavController(
         // Replace fragment representing a navigation item
         val fragment = fragmentManager.findFragmentByTag(itemId.toString())
             ?: NavHostFragment.create(getNavGraphId(itemId))
+
         fragmentManager.beginTransaction()
             .setCustomAnimations(
                 R.anim.nav_default_enter_anim,
@@ -121,12 +124,13 @@ fun <E> MutableList<E>.moveLast(item: E) {
     this.add(item)
 }
 
-fun BottomNavigationView.setUpNavigation(bottomNavController: BottomNavController) {
+fun BottomNavigationView.setUpNavigation(bottomNavController: BottomNavController,viewModel: MainActivityVM) {
     setOnNavigationItemSelectedListener {
         bottomNavController.onNavigationItemSelected(it.itemId)
     }
     setOnNavigationItemReselectedListener {
         bottomNavController.onNavigationItemReselected(it)
+
 
     }
     bottomNavController.setOnItemNavigationChanged { itemId ->

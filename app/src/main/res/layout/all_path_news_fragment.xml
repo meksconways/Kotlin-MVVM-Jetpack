@@ -3,23 +3,28 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".viewallfragment.AllPathNewsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:shimmer_demo_angle="20"
+            app:shimmer_demo_layout="@layout/layout_demo_pathnews"
+            app:shimmer_demo_child_count="8"
+            app:shimmer_demo_layout_manager_type="linear_vertical"
             android:id="@+id/rv_viewAll"
     >
 
 
-    </androidx.recyclerview.widget.RecyclerView>
+    </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
 
     <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/progressBar"
             android:layout_gravity="center"
+            android:visibility="gone"
     />
 
 </FrameLayout>

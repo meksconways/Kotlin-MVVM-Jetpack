@@ -14,7 +14,11 @@ import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import com.mek.haberlerkotlin.utils.Helper
 
-class SubNewsAdapter constructor(owner: LifecycleOwner, viewModel: ListNewsVM, path: String = "/spor/") :
+class SubNewsAdapter constructor(
+    owner: LifecycleOwner,
+    viewModel: ListNewsVM, path: String = "/spor/",
+    private val listener: NewsSelectedListener
+) :
     RecyclerView.Adapter<SubNewsAdapter.SubNewsViewHolder>() {
 
     private val dataList = ArrayList<ListNewsModel>()
@@ -22,7 +26,7 @@ class SubNewsAdapter constructor(owner: LifecycleOwner, viewModel: ListNewsVM, p
 
     init {
 
-        when(path){
+        when (path) {
             "/spor/" -> {
                 viewModel.getSportsData().observe(owner, Observer { data ->
                     dataList.clear()
@@ -66,7 +70,7 @@ class SubNewsAdapter constructor(owner: LifecycleOwner, viewModel: ListNewsVM, p
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubNewsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_subnews, parent, false)
-        return SubNewsViewHolder(view)
+        return SubNewsViewHolder(view,listener)
     }
 
     override fun getItemCount(): Int {
@@ -78,14 +82,23 @@ class SubNewsAdapter constructor(owner: LifecycleOwner, viewModel: ListNewsVM, p
     }
 
 
-    class SubNewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SubNewsViewHolder(itemView: View,
+                            listener: NewsSelectedListener) : RecyclerView.ViewHolder(itemView) {
 
         private val newsPhoto = itemView.findViewById(R.id.img_subNewsPhoto) as ImageView
         private val newsPath = itemView.findViewById(R.id.txt_subNewsPath) as TextView
         private val newsTitle = itemView.findViewById(R.id.txt_subNewsTitle) as TextView
         private val newsDate = itemView.findViewById(R.id.txt_subNewsDate) as TextView
+        lateinit var model: ListNewsModel
+
+        init {
+            itemView.setOnClickListener {
+                listener.setSelectedNews(model)
+            }
+        }
 
         fun bind(listNewsModel: ListNewsModel) {
+            this.model = listNewsModel
 
             if (listNewsModel.files.isNotEmpty()) {
                 Glide.with(newsPath.context)

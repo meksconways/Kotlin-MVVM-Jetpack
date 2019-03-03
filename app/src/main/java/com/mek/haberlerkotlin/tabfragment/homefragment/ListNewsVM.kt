@@ -57,8 +57,9 @@ class ListNewsVM @Inject constructor(
                 { result ->
                     data.value = result
                     tumHaberler.addAll(result)
+
                     setKategoriHaberler()
-                    executionCount.value = executionCount.value?.plus(10)
+
                 },
                 { error -> print(error.localizedMessage) }
             ))
@@ -80,6 +81,7 @@ class ListNewsVM @Inject constructor(
         sportsData.value = sporHaberleri
         economyData.value = ekonomiHaberleri
         journalData.value = gundemHaberleri
+        executionCount.value = executionCount.value?.plus(10)
     }
 
     private fun fetchEconomyNews() {
@@ -136,7 +138,7 @@ class ListNewsVM @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         if (compositeDisposable.size() > 0) {
-            compositeDisposable.clear()
+            compositeDisposable.dispose()
         }
 
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mek.haberlerkotlin.utils.TITLE
+import com.mek.haberlerkotlin.utils.fromChildFragment
 
 class MainActivityVM : ViewModel() {
 
@@ -11,10 +12,15 @@ class MainActivityVM : ViewModel() {
     private val hasBackButton = MutableLiveData<Boolean>(false)
     private val bottomBarBehavior = MutableLiveData<Boolean>(false)
 
+
+
     fun getBottomBarBehavior(): LiveData<Boolean> = bottomBarBehavior
 
-    fun setBottomBarBehavior(v: Boolean){
-        bottomBarBehavior.value = v
+    fun setBottomBarBehavior(v: Boolean) {
+        if (!fromChildFragment) {
+            bottomBarBehavior.value = v
+        }
+
     }
 
     fun getTitle(): LiveData<String> {

@@ -1,16 +1,16 @@
 package com.mek.haberlerkotlin.tabfragment.galleryfragment
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SnapHelper
-
 import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.base.MyApplication
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryVM
@@ -22,7 +22,7 @@ import javax.inject.Inject
 class GalleryFragment : Fragment() {
 
     companion object {
-        fun newInstance() = GalleryFragment()
+        fun newInstance(number: Int) = GalleryFragment()
     }
 
     private lateinit var viewModel: GalleryVM
@@ -44,18 +44,22 @@ class GalleryFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this,factory).get(GalleryVM::class.java)
-        val vm = ViewModelProviders.of(activity!!,factory).get(MainGalleryVM::class.java)
-        rv_galleryMain.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        rv_galleryMain.adapter = GalleryMainAdapter(this,viewModel,this,vm)
+        viewModel = ViewModelProviders.of(activity!!, factory).get(GalleryVM::class.java)
+        val vm = ViewModelProviders.of(activity!!, factory).get(MainGalleryVM::class.java)
+        rv_galleryMain.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rv_galleryMain.adapter = GalleryMainAdapter(this, viewModel, this, vm)
         val snapHelper: SnapHelper = CustomSnapHelper()
         snapHelper.attachToRecyclerView(rv_galleryMain)
-
+        viewModel.getNavigateTo().observe(this, Observer { go ->
+            if (go) {
+                rv_galleryMain.findNavController().navigate(
+                    R.id.go_to_galleryDetail
+                )
+                viewModel.setNavigateTo(false)
+            }
+        })
 
     }
-
-
-
 
 
 }

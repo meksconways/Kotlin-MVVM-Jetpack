@@ -11,12 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mek.haberlerkotlin.R
+import com.mek.haberlerkotlin.tabfragment.homefragment.NewsSelectedListener
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import com.mek.haberlerkotlin.utils.Helper
 
 class AllPathNewsAdapter(
     owner: LifecycleOwner,
-    viewModel: AllPathNewsVM
+    viewModel: AllPathNewsVM,
+    private val listener: NewsSelectedListener
+
 ) : RecyclerView.Adapter<AllPathNewsAdapter.AllPathNewsVH>() {
 
 
@@ -35,8 +38,8 @@ class AllPathNewsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllPathNewsVH {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_allpathnews,parent,false)
-        return AllPathNewsVH(view)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_allpathnews, parent, false)
+        return AllPathNewsVH(view, listener)
     }
 
     override fun getItemCount(): Int = dataList.size
@@ -46,15 +49,24 @@ class AllPathNewsAdapter(
     }
 
 
-    class AllPathNewsVH(itemView:View) : RecyclerView.ViewHolder(itemView){
+    class AllPathNewsVH(
+        itemView: View,
+        listener: NewsSelectedListener
+    ) : RecyclerView.ViewHolder(itemView) {
 
         private val newsPhoto = itemView.findViewById(R.id.img_subNewsPhoto) as ImageView
         private val newsPath = itemView.findViewById(R.id.txt_subNewsPath) as TextView
         private val newsTitle = itemView.findViewById(R.id.txt_subNewsTitle) as TextView
         private val newsDate = itemView.findViewById(R.id.txt_subNewsDate) as TextView
+        lateinit var model: ListNewsModel
+        init {
+            itemView.setOnClickListener {
+                listener.setSelectedNews(model)
+            }
+        }
 
         fun bind(listNewsModel: ListNewsModel) {
-
+            this.model = listNewsModel
             if (listNewsModel.files.isNotEmpty()) {
                 Glide.with(newsPath.context)
                     .load(listNewsModel.files[0].fileUrl)
@@ -62,7 +74,7 @@ class AllPathNewsAdapter(
                     .into(newsPhoto)
             }
             newsTitle.text = listNewsModel.title
-            newsPath.text =  Helper.pathParse(listNewsModel.path).capitalize()
+            newsPath.text = Helper.pathParse(listNewsModel.path).capitalize()
             newsDate.text = Helper.dateParse(listNewsModel.date)
 
         }

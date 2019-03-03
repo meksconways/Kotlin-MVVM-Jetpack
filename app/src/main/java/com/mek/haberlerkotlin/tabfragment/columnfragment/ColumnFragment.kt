@@ -1,21 +1,15 @@
 package com.mek.haberlerkotlin.tabfragment.columnfragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.mek.haberlerkotlin.R
 import com.mek.haberlerkotlin.home.MainActivityVM
-import com.mek.haberlerkotlin.utils.TITLE
 
 class ColumnFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ColumnFragment()
-    }
 
     private lateinit var viewModel: ColumnVM
 
@@ -31,7 +25,8 @@ class ColumnFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(ColumnVM::class.java)
 
         val mainViewModel = ViewModelProviders.of(activity!!)[MainActivityVM::class.java]
-        mainViewModel.setTitle("Hürriyet Haber")
+        mainViewModel.setTitle("Köşe Yazıları")
+        mainViewModel.setHasBackButton(false)
     }
 
 }

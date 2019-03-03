@@ -1,7 +1,5 @@
 package com.mek.haberlerkotlin.utils
 
-import androidx.fragment.app.Fragment
-
 
 /** The base URL of the API */
 const val BASE_URL: String = "https://api.hurriyet.com.tr/v1/"
@@ -22,6 +20,9 @@ const val MAGAZIN_PATH: String = "/magazin-haberleri/"
 const val EGITIM_PATH: String = "/egitim/"
 
 var TITLE: String = "Haberler"
+
+
+var fromChildFragment: Boolean = false
 
 
 class Helper {

@@ -17,16 +17,21 @@
                 android:background="@color/primaryColor"
         />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/indicator"
+                app:shimmer_demo_child_count="1"
+                app:shimmer_demo_grid_child_count="1"
+                app:shimmer_demo_layout="@layout/layout_demo_top"
+                app:shimmer_demo_layout_manager_type="linear_vertical"
+                app:shimmer_demo_angle="20"
                 android:layout_marginTop="8dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:id="@+id/rv_topics"
         >
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
 
         <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
                 android:layout_height="wrap_content"

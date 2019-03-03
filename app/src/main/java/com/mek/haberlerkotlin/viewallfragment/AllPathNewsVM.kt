@@ -1,6 +1,5 @@
 package com.mek.haberlerkotlin.viewallfragment
 
-import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,11 +12,11 @@ import javax.inject.Inject
 class AllPathNewsVM @Inject constructor(private val apiRequester: ApiRequester) : ViewModel() {
 
     private val data = MutableLiveData<List<ListNewsModel>>()
-    private val loading = MutableLiveData<Int>(View.VISIBLE)
+    private val loading = MutableLiveData<Boolean>(true)
     private val compositeDisposable = CompositeDisposable()
     private val pathData = MutableLiveData<String>()
 
-    fun getLoading(): LiveData<Int> = loading
+    fun getLoading(): LiveData<Boolean> = loading
     fun getData(): LiveData<List<ListNewsModel>> = data
     fun getPathData(): LiveData<String> = pathData
 
@@ -25,19 +24,24 @@ class AllPathNewsVM @Inject constructor(private val apiRequester: ApiRequester) 
         pathData.value = v
     }
 
+    var isFirst:Boolean = true
 
     fun fetchData() {
-        compositeDisposable.add(
-            apiRequester.getPathNews(pathData.value!!)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { loading.value = View.VISIBLE }
-                .doOnEvent { _, _ -> loading.value = View.GONE }
-                .subscribe(
-                    { result -> data.value = result },
-                    { error -> print(error.localizedMessage) }
+        if (isFirst){
+            compositeDisposable.add(
+                apiRequester.getPathNews(pathData.value!!)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { loading.value = true }
+                    .doOnEvent { _, _ -> loading.value = false }
+                    .subscribe(
+                        { result -> data.value = result },
+                        { error -> print(error.localizedMessage) }
 
-                )
-        )
+                    )
+            )
+        }
+
+        isFirst = false
     }
 
     override fun onCleared() {

@@ -3,10 +3,38 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/main_nav"
+            app:startDestination="@id/home1"
+
            >
-
-
-    <include app:graph="@navigation/nav_newsfeed"/>
-    <include app:graph="@navigation/nav_gallery"/>
-    <include app:graph="@navigation/nav_column"/>
+    <fragment android:id="@+id/home3"
+              android:name="com.mek.haberlerkotlin.tabfragment.columnfragment.ColumnFragment"
+              android:label="column_fragment" tools:layout="@layout/column_fragment"/>
+    <fragment android:id="@+id/home2"
+              android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
+              android:label="gallery_fragment" tools:layout="@layout/gallery_fragment">
+        <action android:id="@+id/go_to_galleryDetail" app:destination="@id/galleryDetailFragment"
+                app:launchSingleTop="true"/>
+    </fragment>
+    <fragment android:id="@+id/home1"
+              android:name="com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment"
+              android:label="list_news_fragment" tools:layout="@layout/list_news_fragment">
+        <action android:id="@+id/go_to_allPathNewsFragment" app:destination="@id/allPathNewsFragment2"/>
+        <action android:id="@+id/go_to_newsDetail" app:destination="@id/newsDetail3"/>
+    </fragment>
+    <fragment android:id="@+id/allPathNewsFragment2"
+              android:name="com.mek.haberlerkotlin.viewallfragment.AllPathNewsFragment"
+              android:label="all_path_news_fragment" tools:layout="@layout/all_path_news_fragment">
+        <action android:id="@+id/go_to_newsDetail" app:destination="@id/newsDetail3"/>
+    </fragment>
+    <fragment android:id="@+id/newsDetail3" android:name="com.mek.haberlerkotlin.newsdetail.NewsDetail"
+                         android:label="NewsDetail"/>
+    <fragment android:id="@+id/galleryDetailFragment"
+                         android:name="com.mek.haberlerkotlin.gallerydetail.GalleryDetailFragment"
+                         android:label="GalleryDetailFragment">
+        <action android:id="@+id/go_to_gallerySlider"
+                app:destination="@id/gallerySliderFragment"/>
+    </fragment>
+    <fragment android:id="@+id/gallerySliderFragment"
+                         android:name="com.mek.haberlerkotlin.gallerydetail.galleryslider.GallerySliderFragment"
+                         android:label="GallerySliderFragment"/>
 </navigation>

@@ -10,6 +10,13 @@ class GalleryVM @Inject constructor(apiRequester: ApiRequester): ViewModel() {
 
     private val newsType = MutableLiveData<String>("tümü")
 
+    private val navigateTo = MutableLiveData<Boolean>(false)
+
+    fun getNavigateTo(): LiveData<Boolean> = navigateTo
+
+    fun setNavigateTo(value: Boolean){
+        navigateTo.value = value
+    }
 
 
     fun getNewsType(): LiveData<String> = newsType

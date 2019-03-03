@@ -7,6 +7,7 @@ import com.mek.haberlerkotlin.newsdetail.NewsDetail
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryFragment
 import com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment
+import com.mek.haberlerkotlin.ui.NavigationModule
 import com.mek.haberlerkotlin.viewallfragment.AllPathNewsFragment
 import com.mek.haberlerkotlin.viewmodel.ViewModelModule
 import dagger.BindsInstance
@@ -14,7 +15,10 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, ViewModelModule::class])
+@Component(
+    modules = [NetworkModule::class, ViewModelModule::class,
+        NavigationModule::class]
+)
 interface AppComponent {
 
     fun inject(application: MyApplication)

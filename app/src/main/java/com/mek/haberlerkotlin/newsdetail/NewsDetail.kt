@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,18 +13,16 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.mek.haberlerkotlin.R
-import com.mek.haberlerkotlin.base.MyApplication
+import com.mek.haberlerkotlin.base.getAppComponent
 import com.mek.haberlerkotlin.home.MainActivityVM
 import com.mek.haberlerkotlin.utils.Helper
+import com.mek.haberlerkotlin.utils.fromChildFragment
 import com.mek.haberlerkotlin.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.news_detail_fragment.*
 import javax.inject.Inject
 
 class NewsDetail : Fragment() {
 
-    companion object {
-        fun newInstance() = NewsDetail()
-    }
 
     private lateinit var viewModel: NewsDetailVM
     private lateinit var _viewModel: MainActivityVM
@@ -33,9 +30,10 @@ class NewsDetail : Fragment() {
     @Inject
     lateinit var factory: ViewModelFactory
 
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        MyApplication.getAppComponent(context).inject(this)
+        context.getAppComponent().inject(this)
     }
 
     override fun onCreateView(
@@ -52,7 +50,7 @@ class NewsDetail : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this, factory).get(NewsDetailVM::class.java)
-        _viewModel = activity?.let { ViewModelProviders.of(it).get(MainActivityVM::class.java) }!!
+        _viewModel = ViewModelProviders.of(activity!!)[MainActivityVM::class.java]
         _viewModel.setBottomBarBehavior(false)
         _viewModel.setHasBackButton(true)
         _viewModel.setTitle("Haber Detay")
@@ -97,6 +95,8 @@ class NewsDetail : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _viewModel.setBottomBarBehavior(true)
+        if (fromChildFragment) fromChildFragment = false
+
     }
 }
 

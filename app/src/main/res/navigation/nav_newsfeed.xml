@@ -3,7 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/home1"
-            app:startDestination="@id/listNewsFragment2">
+            app:startDestination="@id/listNewsFragment2" android:label="Ana Sayfa">
 
     <fragment android:id="@+id/listNewsFragment2"
               android:name="com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment"
@@ -17,7 +17,8 @@
                 app:popExitAnim="@anim/nav_default_pop_exit_anim"
         />
         <action android:id="@+id/action_listNewsFragment2_to_allPathNewsFragment"
-                app:destination="@id/allPathNewsFragment"/>
+                app:destination="@id/allPathNewsFragment"
+        />
     </fragment>
     <fragment android:id="@+id/galleryFragment3"
               android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"

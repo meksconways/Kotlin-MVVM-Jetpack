@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -16,26 +15,14 @@ import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryNewsModel
 
 class MainGalleryAdapter(
     lifecycleOwner: LifecycleOwner,
-    viewModel: MainGalleryVM
+    viewModel: MainGalleryVM,
+    private val listener: GalleryNewsSelectedListener
 ) : RecyclerView.Adapter<MainGalleryAdapter.MainGalleryVH>() {
 
     private val dataList = ArrayList<GalleryNewsModel>()
 
     init {
         viewModel.getData().observe(lifecycleOwner, Observer { data ->
-
-//            if (data == null) {
-//                dataList.clear()
-//                notifyDataSetChanged()
-//            }
-//            val diffResult = DiffUtil.calculateDiff(MainGalleryDiffCallback(dataList, data))
-//            if (dataList.isEmpty()) {
-//                dataList.clear()
-//                dataList.addAll(data)
-//            }
-//            diffResult.convertNewPositionToOld(0)
-//            diffResult.dispatchUpdatesTo(this)
-
 
             dataList.clear()
             if (data != null) {
@@ -47,7 +34,7 @@ class MainGalleryAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainGalleryVH {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_gallery_top, parent, false)
-        return MainGalleryVH(view)
+        return MainGalleryVH(view, listener)
     }
 
     override fun getItemCount(): Int = dataList.size
@@ -57,9 +44,16 @@ class MainGalleryAdapter(
     }
 
 
-    class MainGalleryVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        init {
+    class MainGalleryVH(
+        itemView: View,
+        listener: GalleryNewsSelectedListener
+    ) : RecyclerView.ViewHolder(itemView) {
+        lateinit var model: GalleryNewsModel
 
+        init {
+            itemView.setOnClickListener {
+                listener.setSelectedNews(model)
+            }
         }
 
         val img1 = itemView.findViewById<ImageView>(R.id.ph1)
@@ -69,6 +63,7 @@ class MainGalleryAdapter(
         val txtMore = itemView.findViewById<TextView>(R.id.txt_plus)
 
         fun bind(model: GalleryNewsModel) {
+            this.model = model
             title.text = model.title
             txtMore.text = "+${model.files.size - 2}"
             img1.apply {
