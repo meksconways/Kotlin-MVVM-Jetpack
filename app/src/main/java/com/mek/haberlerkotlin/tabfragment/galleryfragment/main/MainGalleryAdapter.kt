@@ -25,8 +25,6 @@ class MainGalleryAdapter(
     init {
         viewModel.getData().observe(lifecycleOwner, Observer { data ->
 
-            Log.d("///",data.toString())
-
             dataList.clear()
             if (data != null) {
                 dataList.addAll(data)

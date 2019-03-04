@@ -19,16 +19,17 @@ import com.mek.haberlerkotlin.utils.SPOR_PATH
 class GalleryMainAdapter(
     val fragment: GalleryFragment,
     private val viewModel: GalleryVM,
-    owner: LifecycleOwner,
+    private val owner: LifecycleOwner,
     vm: MainGalleryVM
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     MenuItemSelectedListener {
 
     private var newsType = "tümü"
 
-    override fun setItemSelected(type: String) {
+    override fun setItemSelected(type: String,pos: Int) {
         this.newsType = type
         viewModel.setNewsType(type)
+        viewModel.setSelectionPosition(pos)
     }
 
     init {
@@ -138,14 +139,16 @@ class GalleryMainAdapter(
                 )
 
             }
-            holderMenu.recyclerView.adapter = GalleryMenuAdapter(galleryMenuItem, this)
+            holderMenu.recyclerView.adapter = GalleryMenuAdapter(galleryMenuItem, this,viewModel,owner)
 
 
         } else {
 
+
+
             val fragmentManager: FragmentManager = (fragment.activity)!!.supportFragmentManager
             fragmentManager.beginTransaction()
-                .replace(R.id.containerSub, MainGalleryFragment.newInstance(newsType))
+                .replace(R.id.containerSub, MainGalleryFragment())
                 .disallowAddToBackStack()
                 .commit()
 

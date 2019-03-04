@@ -2,6 +2,8 @@ package com.mek.haberlerkotlin.tabfragment.galleryfragment.main
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,20 +37,21 @@ class MainGalleryFragment : Fragment(), GalleryNewsSelectedListener {
     }
 
 
-    companion object {
-        fun newInstance(type: String): MainGalleryFragment {
-            val fragment = MainGalleryFragment()
-            val args = Bundle()
-            args.putString("type", type)
-            fragment.arguments = args
-            return fragment
-        }
-    }
+//    companion object {
+//        fun newInstance(type: String): MainGalleryFragment {
+//            val fragment = MainGalleryFragment()
+//            val args = Bundle()
+//            args.putString("type", type)
+//            fragment.arguments = args
+//            return fragment
+//        }
+//    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         context.getAppComponent().inject(this)
     }
+
 
     @Inject
     lateinit var factory: ViewModelFactory
@@ -67,18 +70,17 @@ class MainGalleryFragment : Fragment(), GalleryNewsSelectedListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        parentviewModel = ViewModelProviders.of(activity!!, factory).get(GalleryVM::class.java)
         viewModel = ViewModelProviders.of(activity!!, factory).get(MainGalleryVM::class.java)
+        mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
         observeViewModel()
-        val s = arguments?.getString("type")
-        viewModel.setNewsType(s!!)
         rv_gallery.layoutManager = GridLayoutManager(context, 2)
         rv_gallery.adapter = MainGalleryAdapter(this, viewModel, this)
-        //rv_gallery.hideShimmerAdapter()
         progressBar.visibility = View.GONE
-        mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
+
         mainViewModel.setHasBackButton(false)
-        parentviewModel = ViewModelProviders.of(activity!!, factory).get(GalleryVM::class.java)
+
+
 
     }
 
@@ -103,6 +105,7 @@ class MainGalleryFragment : Fragment(), GalleryNewsSelectedListener {
             }
 
         })
+
     }
 
 }

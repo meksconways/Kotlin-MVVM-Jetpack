@@ -46,10 +46,12 @@ class GalleryFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(activity!!, factory).get(GalleryVM::class.java)
         val vm = ViewModelProviders.of(activity!!, factory).get(MainGalleryVM::class.java)
+
         rv_galleryMain.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rv_galleryMain.adapter = GalleryMainAdapter(this, viewModel, this, vm)
         val snapHelper: SnapHelper = CustomSnapHelper()
         snapHelper.attachToRecyclerView(rv_galleryMain)
+
         viewModel.getNavigateTo().observe(this, Observer { go ->
             if (go) {
                 rv_galleryMain.findNavController().navigate(
@@ -58,6 +60,7 @@ class GalleryFragment : Fragment() {
                 viewModel.setNavigateTo(false)
             }
         })
+        viewModel.getData().observe(this, Observer { rv_galleryMain.smoothScrollToPosition(1) })
 
     }
 

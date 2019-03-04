@@ -1,10 +1,12 @@
 package com.mek.haberlerkotlin.tabfragment.galleryfragment
 
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mek.haberlerkotlin.networking.ApiRequester
+import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -12,6 +14,13 @@ import javax.inject.Inject
 class GalleryVM @Inject constructor(private val apiRequester: ApiRequester): ViewModel() {
 
     private val navigateTo = MutableLiveData<Boolean>(false)
+    private val selectionPosition = MutableLiveData(0)
+
+
+    fun getSelectionPosition(): LiveData<Int> = selectionPosition
+    fun setSelectionPosition(pos: Int){
+        selectionPosition.value = pos
+    }
 
     fun getNavigateTo(): LiveData<Boolean> = navigateTo
 
