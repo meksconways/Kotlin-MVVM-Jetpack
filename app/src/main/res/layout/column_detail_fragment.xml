@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#323232"
+
+>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+
+    >
+
+        <com.github.florent37.diagonallayout.DiagonalLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:elevation="0dp"
+                app:diagonal_angle="45"
+                app:layout_constraintTop_toTopOf="parent"
+                app:diagonal_position="right"
+                app:diagonal_direction="right">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="#212121" />
+
+        </com.github.florent37.diagonallayout.DiagonalLayout>
+
+
+    </FrameLayout>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+
+    >
+
+        <com.github.florent37.diagonallayout.DiagonalLayout
+                android:layout_width="200dp"
+                android:layout_gravity="end"
+                android:layout_height="match_parent"
+                android:elevation="0dp"
+                app:diagonal_angle="54"
+                app:layout_constraintTop_toTopOf="parent"
+                app:diagonal_position= "left"
+                app:diagonal_direction="right">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="#212121" />
+
+        </com.github.florent37.diagonallayout.DiagonalLayout>
+
+
+    </FrameLayout>
+
+
+
+    <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:id="@+id/scrollView"
+            android:visibility="gone"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:background="@android:color/transparent"
+            android:fillViewport="true"
+            tools:context=".tabfragment.columnfragment.columndetail.ColumnDetail">
+
+
+
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+        >
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Muhammed Emin Kişi"
+                      android:textColor="@color/primaryColor"
+                      android:textSize="22sp"
+                      android:fontFamily="@font/dosis_bold"
+                      android:layout_marginTop="16dp"
+                      android:layout_marginStart="16dp"
+                      android:layout_marginEnd="16dp"
+                      android:id="@+id/txt_writer"
+            />
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Muhammed Emin Kişi"
+                      android:textColor="@color/white"
+                      android:textSize="20sp"
+                      android:fontFamily="@font/dosis_bold"
+                      android:layout_marginStart="16dp"
+                      android:layout_marginEnd="16dp"
+                      android:layout_marginBottom="8dp"
+                      android:id="@+id/txt_titleColumn"
+            />
+            <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                               android:layout_height="wrap_content">
+
+                <ImageView android:layout_width="match_parent" android:layout_height="0dp"
+                           app:layout_constraintTop_toTopOf="parent"
+                           app:layout_constraintBottom_toBottomOf="parent"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintDimensionRatio="H,16:10"
+                           android:src="@color/lightgrey"
+                           android:adjustViewBounds="true"
+                           android:scaleType="centerCrop"
+                           android:id="@+id/img_writerImage"
+                />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Muhammed Emin Kişi"
+                      android:textColor="@color/white"
+                      android:textSize="20sp"
+                      android:fontFamily="@font/dosis_bold"
+                      android:layout_marginStart="16dp"
+                      android:layout_marginEnd="16dp"
+                      android:layout_marginTop="8dp"
+                      android:id="@+id/txt_newsDesc"
+            />
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:text="Muhammed Emin Kişi"
+                      android:textColor="@color/white"
+                      android:textSize="16sp"
+                      android:fontFamily="@font/dosis_semibold"
+                      android:layout_marginStart="16dp"
+                      android:layout_marginEnd="16dp"
+                      android:id="@+id/txt_newsText"
+
+            />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <ProgressBar android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+                 android:id="@+id/progressBar"
+    />
+
+</FrameLayout>
+

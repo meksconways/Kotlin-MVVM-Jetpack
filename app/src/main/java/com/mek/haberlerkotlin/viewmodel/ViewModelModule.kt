@@ -2,7 +2,8 @@ package com.mek.haberlerkotlin.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.mek.haberlerkotlin.newsdetail.NewsDetailVM
-import com.mek.haberlerkotlin.tabfragment.columnfragment.ColumnVM
+import com.mek.haberlerkotlin.tabfragment.columnfragment.columndetail.ColumnDetailViewModel
+import com.mek.haberlerkotlin.tabfragment.columnfragment.main.ColumnVM
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryVM
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.MainGalleryVM
 import com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsVM
@@ -43,5 +44,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ColumnVM::class)
     abstract fun bindColumnVM(viewmodel: ColumnVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ColumnDetailViewModel::class)
+    abstract fun bindColumnDetailViewModel(viewmodel: ColumnDetailViewModel): ViewModel
 
 }

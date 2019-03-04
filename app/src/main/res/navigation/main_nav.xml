@@ -7,8 +7,10 @@
 
            >
     <fragment android:id="@+id/home3"
-              android:name="com.mek.haberlerkotlin.tabfragment.columnfragment.ColumnFragment"
-              android:label="Köşe Yazıları" tools:layout="@layout/column_fragment"/>
+              android:name="com.mek.haberlerkotlin.tabfragment.columnfragment.main.ColumnFragment"
+              android:label="Köşe Yazıları" tools:layout="@layout/column_fragment">
+        <action android:id="@+id/go_to_columnDetail" app:destination="@id/columnDetail"/>
+    </fragment>
     <fragment android:id="@+id/home2"
               android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
               android:label="Galeri Haberleri" tools:layout="@layout/gallery_fragment">
@@ -37,4 +39,7 @@
     <fragment android:id="@+id/gallerySliderFragment"
                          android:name="com.mek.haberlerkotlin.gallerydetail.galleryslider.GallerySliderFragment"
                          android:label="Galeri"/>
+    <fragment android:id="@+id/columnDetail"
+              android:name="com.mek.haberlerkotlin.tabfragment.columnfragment.columndetail.ColumnDetail"
+              android:label="Köşe Yazısı Detay"/>
 </navigation>

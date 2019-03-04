@@ -1,9 +1,10 @@
-package com.mek.haberlerkotlin.tabfragment.columnfragment
+package com.mek.haberlerkotlin.tabfragment.columnfragment.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mek.haberlerkotlin.networking.ApiRequester
+import com.mek.haberlerkotlin.tabfragment.columnfragment.main.ColumnModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject

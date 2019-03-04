@@ -1,4 +1,4 @@
-package com.mek.haberlerkotlin.tabfragment.columnfragment
+package com.mek.haberlerkotlin.tabfragment.columnfragment.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,8 @@ import com.mek.haberlerkotlin.R
 
 class ColumnAdapter constructor(
     lifecycleOwner: LifecycleOwner,
-    viewModel: ColumnVM
+    viewModel: ColumnVM,
+    private val listener: ColumnSelectedListener
 ) : RecyclerView.Adapter<ColumnAdapter.ColumnAdapterVH>() {
 
 
@@ -32,7 +33,7 @@ class ColumnAdapter constructor(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ColumnAdapterVH {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_columns, parent, false)
-        return ColumnAdapterVH(view)
+        return ColumnAdapterVH(view,listener)
     }
 
     override fun getItemCount(): Int {
@@ -44,10 +45,17 @@ class ColumnAdapter constructor(
     }
 
 
-    class ColumnAdapterVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ColumnAdapterVH(
+        itemView: View,
+        listener: ColumnSelectedListener
+    ) : RecyclerView.ViewHolder(itemView) {
+
+        lateinit var model: ColumnModel
 
         init {
-
+            itemView.setOnClickListener {
+                listener.setSelectedColumn(model.id)
+            }
         }
 
         private val profileImage: ImageView = itemView.findViewById(R.id.img_person)
@@ -56,7 +64,8 @@ class ColumnAdapter constructor(
         private val name: TextView = itemView.findViewById(R.id.txt_writer)
 
         fun bind(model: ColumnModel) {
-            if (model.files.isNotEmpty()){
+            this.model = model
+            if (model.files.isNotEmpty()) {
                 profileImage.apply {
                     Glide.with(this)
                         .load(model.files[0].fileUrl)
