@@ -55,6 +55,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
 
     implementation 'com.otaliastudios:zoomlayout:1.5.0'
+    implementation 'com.github.florent37:diagonallayout:1.0.9'
+
 
     implementation 'com.google.dagger:dagger:2.17'
     kapt 'com.google.dagger:dagger-compiler:2.17'

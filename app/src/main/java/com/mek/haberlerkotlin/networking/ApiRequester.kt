@@ -1,6 +1,7 @@
 package com.mek.haberlerkotlin.networking
 
 import com.mek.haberlerkotlin.newsdetail.DetailModel
+import com.mek.haberlerkotlin.tabfragment.columnfragment.ColumnModel
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryNewsModel
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import com.mek.haberlerkotlin.utils.API_KEY
@@ -28,6 +29,8 @@ class ApiRequester @Inject constructor(private val apiService: ApiService) {
         return apiService.getAllGalleryNews(API_KEY)
             .subscribeOn(Schedulers.io())
     }
+
+    fun getColumns(): Single<List<ColumnModel>> = apiService.getColumns(API_KEY).subscribeOn(Schedulers.io())
 
     fun getPathGalleryNews(path: String): Single<List<GalleryNewsModel>> {
         return apiService.getPathGalleryNews(API_KEY, "Path eq '$path'")

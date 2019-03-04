@@ -1,6 +1,7 @@
 package com.mek.haberlerkotlin.networking
 
 import com.mek.haberlerkotlin.newsdetail.DetailModel
+import com.mek.haberlerkotlin.tabfragment.columnfragment.ColumnModel
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryNewsModel
 import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 import io.reactivex.Single
@@ -35,5 +36,7 @@ interface ApiService {
     fun getArticleNewsDetail(@Header("apikey") apikey: String,
                              @Path("id") id: String) : Single<DetailModel>
 
+    @GET("columns?\ntop=20")
+    fun getColumns(@Header("apikey") apikey: String): Single<List<ColumnModel>>
 
 }

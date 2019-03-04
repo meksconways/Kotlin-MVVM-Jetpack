@@ -3,12 +3,35 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".tabfragment.columnfragment.ColumnFragment">
 
-    <TextView
+    <com.github.florent37.diagonallayout.DiagonalLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello"/>
+            android:layout_height="100dp"
+            android:elevation="10dp"
+            app:diagonal_angle="8"
+            app:diagonal_position="bottom"
+            app:diagonal_direction="left">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@color/primaryColor" />
+
+    </com.github.florent37.diagonallayout.DiagonalLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_column"
+    >
+
+
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </FrameLayout>

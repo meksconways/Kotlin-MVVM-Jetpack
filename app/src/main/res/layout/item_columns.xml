@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+        <com.github.florent37.diagonallayout.DiagonalLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:diagonal_angle="20"
+                app:diagonal_position="top"
+                app:diagonal_direction="left"
+        >
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/lightgrey" />
+
+        </com.github.florent37.diagonallayout.DiagonalLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="horizontal"
+
+        >
+
+            <ImageView android:layout_width="0dp"
+                       android:layout_height="wrap_content"
+                       android:layout_weight="1"
+                       android:src="@color/primaryColor"
+                       android:adjustViewBounds="true"
+                       android:scaleType="centerCrop"
+                       android:layout_margin="8dp"
+            />
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
+            >
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="Büyük ikramiye bana çıksa..."
+                          android:fontFamily="@font/dosis_bold"
+                          android:textSize="18sp"
+                          android:textColor="#212121"
+                />
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="Bu hafta sonu vizyona giren “Öldür Beni Sevgilim”de Seda Bakan ve Murat Boz, Milli Piyango’dan büyük ikramiye vurduktan sonra birbirlerini ortadan kaldırmaya çalışan sevimli bir çifti oynuyorlar."
+                          android:fontFamily="@font/dosis_semibold"
+                          android:maxLines="3"
+                          android:ellipsize="end"
+                          android:textSize="12sp"
+                          android:textColor="#212121"
+                />
+
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:text="Cengiz SEMERCİOĞLU"
+                          android:fontFamily="@font/dosis_bold"
+                          android:maxLines="3"
+                          android:ellipsize="end"
+                          android:textSize="14sp"
+                          android:textColor="#212121"
+                />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+</androidx.cardview.widget.CardView>
