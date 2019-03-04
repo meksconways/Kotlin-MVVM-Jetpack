@@ -3,16 +3,42 @@
         xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        android:layout_marginStart="16dp"
+        app:cardBackgroundColor="#323232"
+        android:layout_marginStart="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="wrap_content">
+
+
+        <FrameLayout android:layout_width="match_parent"
+                     android:layout_height="60dp"
+                    android:layout_gravity="end"
+        >
+
+            <com.github.florent37.diagonallayout.DiagonalLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:diagonal_angle="20"
+                    app:diagonal_position="bottom"
+                    app:diagonal_direction="right"
+            >
+
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:background="#212121" />
+
+            </com.github.florent37.diagonallayout.DiagonalLayout>
+
+
+        </FrameLayout>
 
         <com.github.florent37.diagonallayout.DiagonalLayout
                 android:layout_width="match_parent"
@@ -26,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:background="@color/lightgrey" />
+                    android:background="#212121" />
 
         </com.github.florent37.diagonallayout.DiagonalLayout>
 
@@ -39,10 +65,11 @@
             <ImageView android:layout_width="0dp"
                        android:layout_height="wrap_content"
                        android:layout_weight="1"
-                       android:src="@color/primaryColor"
+                       android:src="@drawable/ic_person"
                        android:adjustViewBounds="true"
                        android:scaleType="centerCrop"
                        android:layout_margin="8dp"
+                       android:id="@+id/img_person"
             />
 
             <LinearLayout
@@ -56,8 +83,9 @@
                           android:layout_height="wrap_content"
                           android:text="Büyük ikramiye bana çıksa..."
                           android:fontFamily="@font/dosis_bold"
-                          android:textSize="18sp"
-                          android:textColor="#212121"
+                          android:textSize="20sp"
+                          android:textColor="@color/white"
+                          android:id="@+id/txt_title"
                 />
                 <TextView android:layout_width="match_parent"
                           android:layout_height="wrap_content"
@@ -65,8 +93,9 @@
                           android:fontFamily="@font/dosis_semibold"
                           android:maxLines="3"
                           android:ellipsize="end"
-                          android:textSize="12sp"
-                          android:textColor="#212121"
+                          android:textSize="14sp"
+                          android:textColor="@color/white"
+                          android:id="@+id/txt_desc"
                 />
 
                 <TextView android:layout_width="match_parent"
@@ -75,8 +104,9 @@
                           android:fontFamily="@font/dosis_bold"
                           android:maxLines="3"
                           android:ellipsize="end"
-                          android:textSize="14sp"
-                          android:textColor="#212121"
+                          android:textSize="16sp"
+                          android:id="@+id/txt_writer"
+                          android:textColor="@color/white"
                 />
 
 

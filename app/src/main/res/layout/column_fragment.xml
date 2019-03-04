@@ -6,32 +6,38 @@
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".tabfragment.columnfragment.ColumnFragment">
 
-    <com.github.florent37.diagonallayout.DiagonalLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:elevation="10dp"
-            app:diagonal_angle="8"
-            app:diagonal_position="bottom"
-            app:diagonal_direction="left">
 
-        <ImageView
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+        <com.github.florent37.diagonallayout.DiagonalLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:background="@color/primaryColor" />
+                android:layout_height="100dp"
+                android:elevation="10dp"
+                app:diagonal_angle="8"
 
-    </com.github.florent37.diagonallayout.DiagonalLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:diagonal_position="bottom"
+                app:diagonal_direction="left">
 
-    <androidx.recyclerview.widget.RecyclerView
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/primaryColor" />
+
+        </com.github.florent37.diagonallayout.DiagonalLayout>
+
+    </RelativeLayout>
+
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            app:shimmer_demo_angle="45"
             android:id="@+id/rv_column"
     >
-
-
-
-
-    </androidx.recyclerview.widget.RecyclerView>
+    </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
 
 
 </FrameLayout>
