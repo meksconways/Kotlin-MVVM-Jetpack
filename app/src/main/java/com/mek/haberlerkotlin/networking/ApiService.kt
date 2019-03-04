@@ -22,10 +22,10 @@ interface ApiService {
         @Query("\$filter") filter: String
     ): Single<List<ListNewsModel>>
 
-    @GET("newsphotogalleries?\$top=15")
+    @GET("newsphotogalleries?\$top=14")
     fun getAllGalleryNews(@Header("apikey") apikey: String): Single<List<GalleryNewsModel>>
 
-    @GET("newsphotogalleries?\$top=15")
+    @GET("newsphotogalleries?\$top=14")
     fun getPathGalleryNews(
         @Header("apikey") apikey: String,
         @Query("\$filter") filter: String

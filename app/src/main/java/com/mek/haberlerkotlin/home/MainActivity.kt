@@ -4,16 +4,13 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.ui.NavigationUI.navigateUp
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.onNavDestinationSelected
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.mek.haberlerkotlin.R
@@ -22,7 +19,7 @@ import com.mek.haberlerkotlin.ui.ScreenNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
 
     private lateinit var viewmodel: MainActivityVM
@@ -35,32 +32,34 @@ class MainActivity : AppCompatActivity(){
         Navigation.findNavController(this, R.id.container_navhost)
     }
 
-//    private val bottomNavController by lazy(LazyThreadSafetyMode.NONE) {
-//        BottomNavController(this, R.id.container, R.id.home1)
-//    }
+    override fun onSupportNavigateUp(): Boolean = navController
+        .navigateUp()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         getAppComponent().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-//        if (savedInstanceState == null) {
-//            bottomNavController.onNavigationItemSelected()
-//        }
 
+
+        supportActionBar?.elevation = 0f
         viewmodel = ViewModelProviders.of(this).get(MainActivityVM::class.java)
         viewmodel.setBottomBarBehavior(false)
         observeViewModel()
-        //viewmodel.setBottomBarBehavior(true)
-        //toolbar.setupWithNavController(navController)
-        // bottom_nav.setupWithNavController(navController)
 
-        // bottom_nav.setUpNavigation(bottomNavController,viewmodel)
+
+        val appBarConfiguration = AppBarConfiguration
+            .Builder(
+                R.id.home1,
+                R.id.home2,
+                R.id.home3)
+            .build()
+
+        setupActionBarWithNavController(this, navController, appBarConfiguration)
         bottom_nav.setupWithNavController(navController)
 
 
-        bottom_nav.setOnNavigationItemSelectedListener {item ->
+        bottom_nav.setOnNavigationItemSelectedListener { item ->
 
             onNavDestinationSelected(item, navController)
         }
@@ -68,12 +67,6 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-
-
-    override fun onSupportNavigateUp(): Boolean = navController
-        .navigateUp()
-
-    //override fun onBackPressed() = bottomNavController.onBackPressed()
 
     private fun slideUp(child: BottomNavigationView) {
         child.clearAnimation()
@@ -108,22 +101,14 @@ class MainActivity : AppCompatActivity(){
                 title = it
             }
         })
-        viewmodel.getHasBackButton().observe(this, Observer<Boolean> {
-            supportActionBar?.run {
-                setDisplayHomeAsUpEnabled(it)
-            }
-        })
+//        viewmodel.getHasBackButton().observe(this, Observer<Boolean> {
+//            supportActionBar?.run {
+//                setDisplayHomeAsUpEnabled(it)
+//            }
+//        })
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-
-        when (item?.itemId) {
-            android.R.id.home -> onBackPressed()
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
 
 
 }

@@ -8,33 +8,33 @@
            >
     <fragment android:id="@+id/home3"
               android:name="com.mek.haberlerkotlin.tabfragment.columnfragment.ColumnFragment"
-              android:label="column_fragment" tools:layout="@layout/column_fragment"/>
+              android:label="Köşe Yazıları" tools:layout="@layout/column_fragment"/>
     <fragment android:id="@+id/home2"
               android:name="com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryFragment"
-              android:label="gallery_fragment" tools:layout="@layout/gallery_fragment">
+              android:label="Galeri Haberleri" tools:layout="@layout/gallery_fragment">
         <action android:id="@+id/go_to_galleryDetail" app:destination="@id/galleryDetailFragment"
                 app:launchSingleTop="true"/>
     </fragment>
     <fragment android:id="@+id/home1"
               android:name="com.mek.haberlerkotlin.tabfragment.homefragment.ListNewsFragment"
-              android:label="list_news_fragment" tools:layout="@layout/list_news_fragment">
+              android:label="Haberler" tools:layout="@layout/list_news_fragment">
         <action android:id="@+id/go_to_allPathNewsFragment" app:destination="@id/allPathNewsFragment2"/>
         <action android:id="@+id/go_to_newsDetail" app:destination="@id/newsDetail3"/>
     </fragment>
     <fragment android:id="@+id/allPathNewsFragment2"
               android:name="com.mek.haberlerkotlin.viewallfragment.AllPathNewsFragment"
-              android:label="all_path_news_fragment" tools:layout="@layout/all_path_news_fragment">
+              android:label="Kategori Habeleri" tools:layout="@layout/all_path_news_fragment">
         <action android:id="@+id/go_to_newsDetail" app:destination="@id/newsDetail3"/>
     </fragment>
     <fragment android:id="@+id/newsDetail3" android:name="com.mek.haberlerkotlin.newsdetail.NewsDetail"
-                         android:label="NewsDetail"/>
+                         android:label="Haber Detay"/>
     <fragment android:id="@+id/galleryDetailFragment"
                          android:name="com.mek.haberlerkotlin.gallerydetail.GalleryDetailFragment"
-                         android:label="GalleryDetailFragment">
+                         android:label="Galeri Detay">
         <action android:id="@+id/go_to_gallerySlider"
-                app:destination="@id/gallerySliderFragment"/>
+                app:destination="@id/gallerySliderFragment" app:launchSingleTop="false"/>
     </fragment>
     <fragment android:id="@+id/gallerySliderFragment"
                          android:name="com.mek.haberlerkotlin.gallerydetail.galleryslider.GallerySliderFragment"
-                         android:label="GallerySliderFragment"/>
+                         android:label="Galeri"/>
 </navigation>

@@ -8,7 +8,7 @@ import com.mek.haberlerkotlin.tabfragment.homefragment.model.ListNewsModel
 
 class GalleryDetailVM : ViewModel() {
 
-    private val data = MutableLiveData<GalleryNewsModel>()
+    val data = MutableLiveData<GalleryNewsModel>()
 
     fun getData(): LiveData<GalleryNewsModel> = data
     fun setData(data: GalleryNewsModel){

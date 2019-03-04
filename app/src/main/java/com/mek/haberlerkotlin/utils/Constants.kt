@@ -22,6 +22,7 @@ const val EGITIM_PATH: String = "/egitim/"
 var TITLE: String = "Haberler"
 
 
+
 var fromChildFragment: Boolean = false
 
 

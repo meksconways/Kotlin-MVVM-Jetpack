@@ -9,19 +9,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mek.haberlerkotlin.R
+import com.mek.haberlerkotlin.gallerydetail.galleryslider.GallerySliderVM
 import com.mek.haberlerkotlin.home.MainActivityVM
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.GalleryNewsModel
 import com.mek.haberlerkotlin.tabfragment.galleryfragment.main.GalleryNewsSelectedListener
 import kotlinx.android.synthetic.main.gallery_detail_fragment.*
 
-class GalleryDetailFragment : Fragment(),GalleryNewsSelectedListener {
+class GalleryDetailFragment : Fragment(), GalleryNewsSelectedListener {
 
 
     override fun setSelectedImage(position: Int) {
+
+        val sliderViewModel = ViewModelProviders.of(activity!!)[GallerySliderVM::class.java]
+        sliderViewModel.setData(viewModel.data.value!!.files)
+        sliderViewModel.setPosition(position)
+
         rv_galleryDetail.findNavController().navigate(
             R.id.go_to_gallerySlider
         )
@@ -31,8 +34,6 @@ class GalleryDetailFragment : Fragment(),GalleryNewsSelectedListener {
     override fun setSelectedNews(model: GalleryNewsModel) {
 
     }
-
-
 
     private lateinit var viewModel: GalleryDetailVM
 
@@ -58,7 +59,7 @@ class GalleryDetailFragment : Fragment(),GalleryNewsSelectedListener {
         })
 
         rv_galleryDetail.layoutManager = GridLayoutManager(context, 3)
-        rv_galleryDetail.adapter = GalleryDetailAdapter(this, viewModel,this)
+        rv_galleryDetail.adapter = GalleryDetailAdapter(this, viewModel, this)
     }
 
     lateinit var mainActivityVM: MainActivityVM

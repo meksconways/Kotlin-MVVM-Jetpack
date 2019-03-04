@@ -1,51 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
 
-    <ScrollView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:fitsSystemWindows="true"
-            android:fillViewport="true"
-            android:nestedScrollingEnabled="true"
-            tools:context=".gallerydetail.GalleryDetailFragment">
-
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+    >
+        <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:textColor="#212121"
+                android:fontFamily="@font/dosis_semibold"
+                android:id="@+id/txt_title"
+                android:textSize="22sp"
+                android:padding="16dp"
+        />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rv_galleryDetail"
         >
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#212121"
-                    android:fontFamily="@font/dosis_semibold"
-                    android:id="@+id/txt_title"
-                    android:textSize="22sp"
-                    android:padding="16dp"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/rv_galleryDetail"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            >
+        </androidx.recyclerview.widget.RecyclerView>
 
-            </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
-        </LinearLayout>
-
-    </ScrollView>
 </FrameLayout>
 

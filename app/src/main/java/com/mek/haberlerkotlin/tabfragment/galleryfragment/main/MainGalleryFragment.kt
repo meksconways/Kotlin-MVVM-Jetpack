@@ -74,7 +74,6 @@ class MainGalleryFragment : Fragment(), GalleryNewsSelectedListener {
         viewModel.setNewsType(s!!)
         rv_gallery.layoutManager = GridLayoutManager(context, 2)
         rv_gallery.adapter = MainGalleryAdapter(this, viewModel, this)
-        rv_gallery.showShimmerAdapter()
         //rv_gallery.hideShimmerAdapter()
         progressBar.visibility = View.GONE
         mainViewModel = ViewModelProviders.of(activity!!).get(MainActivityVM::class.java)
@@ -84,7 +83,7 @@ class MainGalleryFragment : Fragment(), GalleryNewsSelectedListener {
     }
 
     private fun observeViewModel() {
-        viewModel.getNewsType().observe(this, Observer { type ->
+        parentviewModel.getNewsType().observe(this, Observer { type ->
             viewModel.fetchNews()
             if (type == "tümü") {
                 mainViewModel.setTitle("Galeri Haberleri - ${type.capitalize()}")
@@ -93,7 +92,7 @@ class MainGalleryFragment : Fragment(), GalleryNewsSelectedListener {
             }
 
         })
-        viewModel.getLoading().observe(this, Observer { loading ->
+        parentviewModel.getLoading().observe(this, Observer { loading ->
 
             if (loading == View.GONE) {
                 rv_gallery.hideShimmerAdapter()

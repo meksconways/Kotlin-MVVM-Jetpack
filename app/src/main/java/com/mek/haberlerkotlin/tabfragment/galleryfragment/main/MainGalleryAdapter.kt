@@ -1,5 +1,6 @@
 package com.mek.haberlerkotlin.tabfragment.galleryfragment.main
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +24,8 @@ class MainGalleryAdapter(
 
     init {
         viewModel.getData().observe(lifecycleOwner, Observer { data ->
+
+            Log.d("///",data.toString())
 
             dataList.clear()
             if (data != null) {

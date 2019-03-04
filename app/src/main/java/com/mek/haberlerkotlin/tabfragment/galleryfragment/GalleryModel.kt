@@ -55,8 +55,13 @@ data class Files(
 
     @field:Json(name = "FileUrl")
     val fileUrl: String,
+    @field:Json(name = "Metadata")
+    val metadata: Metadata
+
+)
+
+data class Metadata(
     @field:Json(name = "Description")
     val description: String
-
 )
 

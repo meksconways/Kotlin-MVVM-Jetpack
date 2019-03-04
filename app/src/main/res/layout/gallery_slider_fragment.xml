@@ -4,11 +4,16 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black"
         tools:context=".gallerydetail.galleryslider.GallerySliderFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello"/>
+            android:id="@+id/rv_gallerySlider"
+            android:background="@color/black"
+    >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>
